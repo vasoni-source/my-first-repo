@@ -24,7 +24,8 @@ const z = 3
 // the output will be undefined
 /*
 because a hoisted and its value is inialized with undefined but let and 
-cont gets into the temporal dead zone it value is not initialised */
+cont gets into the temporal dead zone it value is not initialised b and 
+c will throw an error*/
 
 // function counter() {
 //   let count = 0;
@@ -46,19 +47,19 @@ cont gets into the temporal dead zone it value is not initialised */
 // be start with count value 0 both are independent of each other both will 
 // create there own execution context
 
-// let num = 10;
-// let obj = {value: 10};
+let num = 10;
+let obj = {value: 10};
 
-// function changePrimitive(x) {
-//   x = 20;
-// }
+function changePrimitive(x) {
+  x = 20;
+}
 
-// function changeObject(y) {
-//   y.value = 20;
-// }
+function changeObject(y) {
+  y.value = 20;
+}
 
-// changePrimitive(num);
-// changeObject(obj);
+changePrimitive("num",num);
+changeObject("obj",obj);
 
 // console.log(num);
 // console.log(obj);
