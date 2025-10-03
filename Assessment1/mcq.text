@@ -74,6 +74,7 @@ a) setTimeout callback b) Promise .then() c) fetch response d) DOMContentL
 Ans = b) Promise.then()
 
 Q15. What is the purpose of destructuring in JavaScript? (1 line)
-Ans = Destructuring is used to seperate elemenets indivisually in a variable 
+Ans = Destructuring is used to seperate elemenets indivisually in a variable and we can 
+also provide default values 
 
 
