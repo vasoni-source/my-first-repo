@@ -65,7 +65,8 @@ const person = {
   }
 };
 const greetFn = person.greet;
-greetFn(); 
+greetFn();
+
 function fn(name){
     this.name = name;
     this.greet2 = ()=>{
