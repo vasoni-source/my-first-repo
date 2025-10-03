@@ -1,0 +1,79 @@
+Q1 . Which of the following is not a valid JavaScript data type?
+a) String b) Number c) Character d) Boolean
+Ans = c) Character
+
+Q2. What will the following code log?
+
+let x = 10;
+x += "5";
+console.log(typeof x);
+Ans = b)String
+
+Q3. What is the difference between let and const? (1 line)
+
+Ans = let can be reinitialized const cant be reinitialized
+
+Q4. Which operator is used for spread syntax in JavaScript?
+a) ... b) ?? c) => d) **
+Ans = a) ...
+
+Q5.What will this code output?
+
+console.log([1, 2, 3].map(n => n * 2));
+a) [2, 4, 6] b) 2,4,6 c) undefined d) null
+Ans = a) [2,4,6]
+
+Q.6 Which of the following is true about arrow functions?
+a) They have their own this
+b) They cannot be anonymous
+c) They don’t have their own this
+d) They must always return explicitly
+Ans = c) they dont have their own this
+
+Q7. Identify the DOM method used to select elements by class name:
+a) querySelector('#className')
+b) getElementById('className')
+c) querySelector('.className')
+d) getElementsByTagName('className')
+Ans = c) querySelector('.className')
+
+Q8 .What is the output?
+
+console.log(typeof null);
+a) "null" b) "object" c) "undefined" d) "string"
+Ans = b) object
+
+Q9. Which string method removes whitespace from both ends?
+a) slice() b) trim() c) split() d) substring()
+Ans = b) trim()
+
+Q10. What does event.preventDefault() do?
+Ans = It prevents page to reload
+
+Q11. Which method can be used to iterate over arrays without creating a new array?
+a) map b) filter c) forEach d) reduce
+Ans = c) forEach
+
+Q12. What will be the output?
+
+const arr = [1,2,3];
+const newArr = [...arr, 4];
+console.log(newArr);
+a) [1,2,3,4] b) [4,1,2,3] c) [1,[2,3],4] d) error
+
+Ans = a) [1,2,3,4]
+
+Q13.What is the difference between synchronous and asynchronous code in JS? (1-2 lines)
+Ans = synchronous code executes line by line it has a blocking nature it blocks the next line 
+till the previous executes
+Asynnchronous means that a code of line that is taking time can be executed later it doesont block 
+the next line of code it executes other code before any heavy operations that  is taking time
+
+Q14. Which of the following executes first in the event loop?
+a) setTimeout callback b) Promise .then() c) fetch response d) DOMContentLoaded
+Ans = b) Promise.then()
+
+Q15. What is the purpose of destructuring in JavaScript? (1 line)
+Ans = Destructuring is used to seperate elemenets indivisually in a variable 
+
+

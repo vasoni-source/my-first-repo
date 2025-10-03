@@ -52,7 +52,7 @@ console.log(null == 0);
 // false here null is reffered to as object
 console.log(null === 0);
 // false
-console.log(typeof(null))
+// console.log(typeof(null)) here type of null will be object 
 // Question:
 // Write a closure that keeps track of a counter. Each time the function is called,
 // it should increment and return the counter.const counter = createCounter();
