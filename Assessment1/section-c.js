@@ -9,6 +9,7 @@ function addTask() {
   console.log(inpt);
   arr.push(inpt);
   console.log(arr);
+  section.innerHTML="";
   arr.map((item) => {
     let itemPara = document.createElement("p");
     section.appendChild(itemPara);
@@ -23,11 +24,10 @@ addBtn.addEventListener("click", addTask);
 console.log("Start");
 
 setTimeout(() => {
-  console.log("Data fetched");
-}, 0);
-let myPromise = new Promise((resolve, reject) => {
+  console.log("Timeout");
+  let myPromise = new Promise((resolve, reject) => {
   if (resolve) {
-    console.log("Timeout");
+    console.log("Promise resolved");
   } else {
     console.log("Promise reject");
   }
@@ -35,7 +35,11 @@ let myPromise = new Promise((resolve, reject) => {
 async function fetchData() {
   let fetchData = await fetch("https://jsonplaceholder.typicode.com/todos/1");
   let result = await fetchData.json();
+  console.log("Data fetched");
   console.log("End");
 }
 fetchData();
-console.log("Promise resolved");
+
+}, 0);
+
+
