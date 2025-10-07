@@ -1,0 +1,2 @@
+Virtual dom is the lightweight copy of actual dom it compares with actual dom and render only the changed portions 
+and removes unneccessary sythetic events 
