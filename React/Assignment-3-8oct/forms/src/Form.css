@@ -1,0 +1,46 @@
+.formDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.mainDiv{
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.formD{
+    /* border: 2px solid black; */
+    width: 30%;
+    height: 430px;
+    box-shadow: 1px 1px 5px 1px lightblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.head{
+    color: rgb(44, 148, 233);
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.inpt{
+     padding: 10px;
+     border: 2px solid rgb(63, 168, 230);
+     border-radius: 10px;
+     width: 100%;
+}
+.gradientBtn{
+    background-image: linear-gradient(to right, rgb(74, 160, 231) , rgb(91, 196, 91));
+    color: white;
+}
+.error{
+    color: red;
+    font-size: 10px;
+}
