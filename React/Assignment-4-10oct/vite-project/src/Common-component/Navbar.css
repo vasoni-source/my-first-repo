@@ -1,0 +1,34 @@
+.nav{
+    border: 2px solid black;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    position: sticky;
+}
+ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    width: 30%;
+    /* border: 2px solid red; */
+}
+li a{
+    font-weight: 600;
+    font-family: emoji;
+    color: white;
+    text-decoration: none;
+}
+li a.active{
+color: rgb(136, 92, 249);
+}
+.logo{
+    font-size: 20px;
+    font-weight: 700;
+    font-family: cursive;
+}
