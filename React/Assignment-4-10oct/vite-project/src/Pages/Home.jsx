@@ -5,7 +5,7 @@ import { UserContext } from "../context/user";
 import { useFetch } from "../hooks/useFetch";
 export default function Home({ handleCart }) {
   const { isLogin } = useContext(UserContext);
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
   const navigator = useNavigate();
   const handleNavigate = (id) => {
@@ -19,16 +19,19 @@ export default function Home({ handleCart }) {
       setMessage("Please login to add items to cart");
     }
   };
-  const [url, setUrl] = useState("");
-  const method="GET"
-  useFetch({}).then((res)=>{
-    setData(res)
-  });
-  useEffect( async()=>{
-    const result =  await useFetch()
-    setData(result)
-  })
-  console.log("===",data)
+
+  const {data} = useFetch({url:"products"});
+  console.log("datafromhome",data);
+  //  useFetch({}).then((res)=>{setData(res)});
+  // console.log("data from home",data1);
+  // const [url, setUrl] = useState("");
+  // const method="GET"
+ 
+  // useEffect( async()=>{
+  //   const result =  await useFetch()
+  //   setData(result)
+  // })
+  // console.log("===",data)
   // useEffect(async () => {
   //   fetch("http://localhost:4000/products")
   //     .then((res) => {
