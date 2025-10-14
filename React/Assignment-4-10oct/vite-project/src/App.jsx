@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route ,Router} from "react-router-dom";
 import Navbar from "./Common-component/Navbar";
 import About from "./Pages/About";
 import Cart from "./Pages/Cart";
@@ -8,6 +8,7 @@ import Product from "./Pages/Product";
 import { useEffect, useState } from "react";
 import Login from "./Pages/Login";
 import EditProduct from "./Pages/EditProduct";
+import PrivateRoute from "./Protected_route/PrivateRoute";
 import { UserContext } from "./context/user";
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -38,17 +39,23 @@ function App() {
   }, [isLogin]);
   return (
     <BrowserRouter>
+    <UserContext.Provider value={{ user, isLogin ,setIsLogin}}>
       <Navbar />
-      <UserContext.Provider value={{ user, isLogin }}>
+      
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/products" element={<Home handleCart={handleCart} />} />
           <Route path="/products/:id" element={<Product />} />
-          <Route path="/product/:id/edit" element={<EditProduct />} />
+          {/* <Route path="/product/:id/edit" element={<EditProduct />} /> */}
+          {/* <Route path="/product/:id/edit" element={<PrivateRoute  />}/> */}
+          <Route element={<PrivateRoute/>}>
+            <Route path="/product/:id/edit" element={<EditProduct />} />
+          </Route>
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Cart" element={<Cart cartItems={cartItems} />} />
         </Routes>
+        
       </UserContext.Provider>
     </BrowserRouter>
   );
