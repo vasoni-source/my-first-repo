@@ -1,11 +1,11 @@
 import React from "react";
 import { useContext } from "react";
-import { UserContext } from "../context/user";
+import { UserContext } from "../context/User";
 import { Route, Navigate, Routes, Outlet } from "react-router-dom";
 export default function PrivateRoute() {
-  const {isLogin }= useContext(UserContext);
-  console.log("login from private route",isLogin)
-  if (isLogin==false) {
+  const {state,dispatch}= useContext(UserContext);
+  // console.log("login from private route",isLogin)
+  if (state.isLogin==false) {
     return <Navigate to="/" replace />;
   } 
   else {

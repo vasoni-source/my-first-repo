@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { UserContext } from "../context/user";
+import { UserContext } from "../context/User";
+// import { AuthContext } from "../context/User";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -9,8 +10,8 @@ export default function Login() {
     password: "1234",
   };
   const navigator = useNavigate();
-  const { user, isLogin, setIsLogin } = useContext(UserContext);
-  console.log("user from local from login", user, "islogin value", isLogin);
+  const { state ,dispatch } = useContext(UserContext);
+  // console.log("user from local from login", user, "islogin value", isLogin);
   const username1 = useRef("");
   const password1 = useRef("");
   const [error, setErrors] = useState("");
@@ -27,7 +28,8 @@ export default function Login() {
       console.log("correct");
       localStorage.setItem("username", username1.current.value);
       localStorage.setItem("password", password1.current.value);
-      setIsLogin(true);
+      // setIsLogin(true);
+      dispatch({type:"login",payload:{ username1, password1 }})
       navigator("/products");
     }
 

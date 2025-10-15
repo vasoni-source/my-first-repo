@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/User";
 // import './Home.css';
 import "./Product.css";
 export default function Product() {
   const { id } = useParams();
   const location = useLocation();
-  const updatedProduct = location.state?.updatedProduct;
+  const updatedProduct = location.state?.formInfo;
   const allProducts = location.state?.product || [];
   let result = allProducts.find((item) => item.id === id);
   if (updatedProduct) {
@@ -25,8 +26,16 @@ export default function Product() {
     price: "",
   });
   const navigator = useNavigate();
+  const {state,dispatch} = useContext(UserContext)
   const handleEditClick = () => {
-    navigator(`/product/${id}/edit`, { state: { formData: formData } });
+    console.log("islogin from product",state?.isLogin)
+   if(state?.isLogin){
+    console.log("islogin from product",state?.isLogin)
+     navigator(`/product/${id}/edit`, { state: { formData: formData } });
+   }
+   else{
+    navigator("/");
+   }
   };
 
   useEffect(() => {

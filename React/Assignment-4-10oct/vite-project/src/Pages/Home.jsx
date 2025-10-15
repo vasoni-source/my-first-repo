@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import { UserContext } from "../context/user";
+import { UserContext } from "../context/User";
 import { useFetch } from "../hooks/useFetch";
 export default function Home({ handleCart }) {
   const { isLogin } = useContext(UserContext);
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
   const navigator = useNavigate();
   const handleNavigate = (id) => {
@@ -19,8 +19,16 @@ export default function Home({ handleCart }) {
       setMessage("Please login to add items to cart");
     }
   };
-
-  const {data} = useFetch({url:"products"});
+useEffect(()=>{
+  console.log("PPpppp")
+  const fetchData = async()=>{
+    const res = await useFetch({url:"products"});
+    console.log("++++++",res)
+    setData(res)
+  }
+  fetchData();
+},[])
+  // const {data,loading,error} = useFetch({url:"products"});
   console.log("datafromhome",data);
   //  useFetch({}).then((res)=>{setData(res)});
   // console.log("data from home",data1);

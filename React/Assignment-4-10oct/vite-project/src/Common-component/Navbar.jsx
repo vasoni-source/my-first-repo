@@ -2,17 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserContext } from '../context/user';
+import { UserContext } from '../context/User';
 import "./Navbar.css"
 export default function Navbar() {
-   const { user, isLogin,setIsLogin } = useContext(UserContext);
-   console.log("islogin value from login",isLogin)
+   const { state,dispatch} = useContext(UserContext);
+  //  console.log("islogin value from login",isLogin)
   const navigator = useNavigate();
   const handleLogout = ()=>{
     localStorage.removeItem("username");
     localStorage.removeItem("password");
-    setIsLogin(false);
-    console.log("islogin from logout fn",isLogin)
+    // setIsLogin(false);
+    dispatch({type:"logout"})
+    // console.log("islogin from logout fn",isLogin)
     console.log("removed")
   }
   const handlelogin =()=>{
@@ -29,7 +30,7 @@ export default function Navbar() {
         <li><Link to="/Contact">Contact</Link></li>
         <li><Link to="/Cart">Cart</Link></li>
        {
-        isLogin==false ?  (<button onClick={handlelogin}>Login</button>):(<button onClick={handleLogout}>Logout</button>)
+        state?.isLogin==false ?  (<button onClick={handlelogin}>Login</button>):(<button onClick={handleLogout}>Logout</button>)
        }
         
       </ul>

@@ -9,37 +9,40 @@ import { useEffect, useState } from "react";
 import Login from "./Pages/Login";
 import EditProduct from "./Pages/EditProduct";
 import PrivateRoute from "./Protected_route/PrivateRoute";
-import { UserContext } from "./context/user";
+import { UserContext } from "./context/User";
+import { User } from "./context/User";
+// import { UserContext } from "./context/User";
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
   const handleCart = (product) => {
     setCartItems([...cartItems, product]);
   };
 
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-  useEffect(() => {
-    const username = localStorage.getItem("username");
-    const password = localStorage.getItem("password");
-    setUser({ username, password });
-    console.log("user from app :", user);
-     if (username && password && username !== "" && password !== "") {
-    setUser({ username, password });
-    setIsLogin(true);
-    console.log("logged in user");
-  } else {
-    setIsLogin(false);
-  }
-    if (isLogin == true) {
-      console.log("logged in user");
-    }
-  }, [isLogin]);
+  // const [user, setUser] = useState({
+  //   username: "",
+  //   password: "",
+  // });
+  // useEffect(() => {
+  //   const username = localStorage.getItem("username");
+  //   const password = localStorage.getItem("password");
+  //   setUser({ username, password });
+  //   console.log("user from app :", user);
+  //    if (username && password && username !== "" && password !== "") {
+  //   setUser({ username, password });
+  //   setIsLogin(true);
+  //   console.log("logged in user");
+  // } else {
+  //   setIsLogin(false);
+  // }
+  //   if (isLogin == true) {
+  //     console.log("logged in user");
+  //   }
+  // }, [isLogin]);
   return (
     <BrowserRouter>
-    <UserContext.Provider value={{ user, isLogin ,setIsLogin}}>
+    {/* <UserContext.Provider value={{ user, isLogin ,setIsLogin}}> */}
+    <User>
       <Navbar />
       
         <Routes>
@@ -55,8 +58,8 @@ function App() {
           <Route path="/Contact" element={<Contact />} />
           <Route path="/Cart" element={<Cart cartItems={cartItems} />} />
         </Routes>
-        
-      </UserContext.Provider>
+        </User>
+      {/* </UserContext.Provider> */}
     </BrowserRouter>
   );
 }
