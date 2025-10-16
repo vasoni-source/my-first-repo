@@ -11,6 +11,8 @@ export function User({ children }) {
   const initialState = {
     user: null,
     isLogin: false,
+    allProduct: null,
+    singleProduct:null,
   };
 
   const userReducer = (state, action) => {
@@ -26,6 +28,18 @@ export function User({ children }) {
           ...state,
           isLogin: false,
         };
+      case "fetchAllProduct":
+          return {
+            ...state,
+            allProduct: action.payload
+          };
+       case "fetchSingleProduct":
+          return {
+            ...state,
+            singleProduct: action.payload
+          }   
+        default:
+        return state;  
     }
   };
   const [state, dispatch] = useReducer(userReducer, initialState);

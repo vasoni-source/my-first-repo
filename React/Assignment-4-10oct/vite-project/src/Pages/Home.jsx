@@ -4,32 +4,38 @@ import "./Home.css";
 import { UserContext } from "../context/User";
 import { useFetch } from "../hooks/useFetch";
 export default function Home({ handleCart }) {
-  const { isLogin } = useContext(UserContext);
-  const [data, setData] = useState(null);
+  // const { isLogin } = useContext(UserContext);
+  const { state,dispatch } = useContext(UserContext);
+  console.log("product from home",state?.allProduct);
+  // const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
   const navigator = useNavigate();
   const handleNavigate = (id) => {
-    navigator(`/products/${id}`, { state: { product: data } });
+    // navigator(`/products/${id}`, { state: { product: data } });
+    navigator(`/products/${id}`);
   };
   const handleChange = (product) => {
-    if (isLogin) {
+    // if (isLogin) {
       handleCart(product);
       console.log("product from home", product);
-    } else {
-      setMessage("Please login to add items to cart");
-    }
+    // } else {
+      // setMessage("Please login to add items to cart");
+    // }
   };
 useEffect(()=>{
   console.log("PPpppp")
   const fetchData = async()=>{
     const res = await useFetch({url:"products"});
-    console.log("++++++",res)
-    setData(res)
+    console.log("response from fetcdata fn home",res)
+    // setData(res)
+    dispatch({type:"fetchAllProduct",payload:res})
   }
   fetchData();
 },[])
+// console.log("datafromhome",data);
+
   // const {data,loading,error} = useFetch({url:"products"});
-  console.log("datafromhome",data);
+  
   //  useFetch({}).then((res)=>{setData(res)});
   // console.log("data from home",data1);
   // const [url, setUrl] = useState("");
@@ -60,7 +66,7 @@ useEffect(()=>{
           <button className="home-cart-toast-btn">Login</button>
         </div>
       ) : null}
-      {data?.map((item) => (
+      {state.allProduct?.map((item) => (
         <div className="home-card" key={item.id}>
           <img src={item.images[0]} alt="" className="home-card-img" />
           <div className="home-cart-content">
