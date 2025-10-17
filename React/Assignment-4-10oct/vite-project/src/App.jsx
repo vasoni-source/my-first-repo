@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
 import Login from "./Pages/Login";
 import EditProduct from "./Pages/EditProduct";
 import PrivateRoute from "./Protected_route/PrivateRoute";
-import { UserContext } from "./context/User";
+// import { UserContext } from "./context/User";
 import { User } from "./context/User";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser, logOutUser } from "../src/features/User/userSlice";
 // import { UserContext } from "./context/User";
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -39,6 +41,35 @@ function App() {
   //     console.log("logged in user");
   //   }
   // }, [isLogin]);
+  // ----------------------------------------------------------------------------------
+   const user = useSelector((state)=>state.user.user)
+   const isLogin = useSelector((state)=>state.user.isLogin)
+   const dispatch = useDispatch();
+   useEffect(() => {
+      const username = localStorage.getItem("username");
+      const password = localStorage.getItem("password");
+      // dispatch({ type: "login", payload: { username, password } });
+      dispatch(loginUser({username,password}))
+      // console.log("user from app :", user);
+      if (username && password && username !== "" && password !== "") {
+        // setUser({ username, password });
+        // setIsLogin(true);
+        // dispatch({ type: "login", payload: { username, password } });
+        dispatch(loginUser({username,password}))
+        console.log("logged in user");
+      } else {
+        // setIsLogin(false);
+        // dispatch({ type: "logout" });
+        dispatch(logOutUser());
+      }
+      // if (state?.isLogin == true) {
+      //   console.log("logged in user");
+      // }
+      if (isLogin == true) {
+        console.log("logged in user");
+      }
+    }, [isLogin]);
+    // -------------------------------------------------------------------------------
   return (
     <BrowserRouter>
     {/* <UserContext.Provider value={{ user, isLogin ,setIsLogin}}> */}

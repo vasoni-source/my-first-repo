@@ -3,6 +3,8 @@ import { UserContext } from "../context/User";
 // import { AuthContext } from "../context/User";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
+import { loginUser, logOutUser } from "../features/User/userSlice";
 import "./Login.css";
 export default function Login() {
   const admin = {
@@ -10,8 +12,10 @@ export default function Login() {
     password: "1234",
   };
   const navigator = useNavigate();
-  const { state ,dispatch } = useContext(UserContext);
+  // const { state ,dispatch } = useContext(UserContext);
   // console.log("user from local from login", user, "islogin value", isLogin);
+  const user = useSelector((state)=>state.user.user)
+  const dispatch = useDispatch();
   const username1 = useRef("");
   const password1 = useRef("");
   const [error, setErrors] = useState("");
@@ -29,7 +33,10 @@ export default function Login() {
       localStorage.setItem("username", username1.current.value);
       localStorage.setItem("password", password1.current.value);
       // setIsLogin(true);
-      dispatch({type:"login",payload:{ username1, password1 }})
+      // dispatch({type:"login",payload:{ username1, password1 }})
+      const userName = username1.current.value;
+      const passWord = password1.current.value;
+      dispatch(loginUser({userName,passWord}));
       navigator("/products");
     }
 

@@ -9,8 +9,8 @@ export function User({ children }) {
   //   password: "",
   // });
   const initialState = {
-    user: null,
-    isLogin: false,
+    // user: null,
+    // isLogin: false,
     allProduct: null,
     singleProduct:null,
   };
@@ -43,25 +43,25 @@ export function User({ children }) {
     }
   };
   const [state, dispatch] = useReducer(userReducer, initialState);
-  useEffect(() => {
-    const username = localStorage.getItem("username");
-    const password = localStorage.getItem("password");
-    // setUser({ username, password });
-    dispatch({ type: "login", payload: { username, password } });
-    // console.log("user from app :", user);
-    if (username && password && username !== "" && password !== "") {
-      // setUser({ username, password });
-      // setIsLogin(true);
-      dispatch({ type: "login", payload: { username, password } });
-      console.log("logged in user");
-    } else {
-      // setIsLogin(false);
-      dispatch({ type: "logout" });
-    }
-    if (state?.isLogin == true) {
-      console.log("logged in user");
-    }
-  }, [state?.isLogin]);
+  // useEffect(() => {
+  //   const username = localStorage.getItem("username");
+  //   const password = localStorage.getItem("password");
+  //   // setUser({ username, password });
+  //   dispatch({ type: "login", payload: { username, password } });
+  //   // console.log("user from app :", user);
+  //   if (username && password && username !== "" && password !== "") {
+  //     // setUser({ username, password });
+  //     // setIsLogin(true);
+  //     dispatch({ type: "login", payload: { username, password } });
+  //     console.log("logged in user");
+  //   } else {
+  //     // setIsLogin(false);
+  //     dispatch({ type: "logout" });
+  //   }
+  //   if (state?.isLogin == true) {
+  //     console.log("logged in user");
+  //   }
+  // }, [state?.isLogin]);
   
 
   return (
