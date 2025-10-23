@@ -17,10 +17,11 @@ export default function SignUp() {
         
     }
   return (
-    <div>
+    <div className='flex flex-col justify-center items-center max-h-100'>
+        <div>
         <h1>SignUp</h1>
         <h4>Already have account? <Link to="/login">Login here</Link></h4>
-        <form action="" className='flex-col gap-y-5 w-xl '>
+        <form action="" className='flex-col gap-y-5 w-xl ' onSubmit={handleSubmit}>
             <div className='flex justify-between items-center'>
                 <label htmlFor="">Name</label>
                 <input name='name' value={formData.name} onChange={handleChange} type="text" placeholder='Enter your name here'className='border border-black rounded-lg'/>
@@ -34,7 +35,8 @@ export default function SignUp() {
                 <input name='password' value={formData.password} onChange={handleChange} type="text" placeholder='Enter your password here'className='border border-black rounded-lg'/>
             </div>
         </form>
-        <button onClick={handleSubmit}>SignUp</button>
+        <button >SignUp</button>
+        </div>
        
     </div>
   )
