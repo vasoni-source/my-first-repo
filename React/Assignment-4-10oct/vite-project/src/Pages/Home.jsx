@@ -1,18 +1,29 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-import { UserContext } from "../context/User";
+// import { UserContext } from "../context/User";
+// ----------------------------------------------------------------
+import { allProduct ,singleProduct} from "../features/Product/productSlice";
+import { useSelector, useDispatch } from 'react-redux'
+// ------------------------------------------------------------------
 import { useFetch } from "../hooks/useFetch";
 export default function Home({ handleCart }) {
   // const { isLogin } = useContext(UserContext);
-  const { state,dispatch } = useContext(UserContext);
-  console.log("product from home",state?.allProduct);
+  // const { state,dispatch } = useContext(UserContext);
+  // ----------------------------------------------
+  const allProducts = useSelector((state)=>state.product.allProduct);
+  const dispatch = useDispatch();
+  // ----------------------------------------------
+  // console.log("product from home",state?.allProduct);
   // const [data, setData] = useState(null);
   const [message, setMessage] = useState("");
   const navigator = useNavigate();
-  const handleNavigate = (id) => {
+  const handleNavigate = (item) => {
     // navigator(`/products/${id}`, { state: { product: data } });
-    navigator(`/products/${id}`);
+    dispatch(singleProduct(item));
+    navigator(`/products/${item.id}`);
+
+
   };
   const handleChange = (product) => {
     // if (isLogin) {
@@ -28,7 +39,10 @@ useEffect(()=>{
     const res = await useFetch({url:"products"});
     console.log("response from fetcdata fn home",res)
     // setData(res)
-    dispatch({type:"fetchAllProduct",payload:res})
+    // --------------------------------------------
+    // dispatch({type:"fetchAllProduct",payload:res})
+    dispatch(allProduct(res));
+    // --------------------------------------------
   }
   fetchData();
 },[])
@@ -66,14 +80,14 @@ useEffect(()=>{
           <button className="home-cart-toast-btn">Login</button>
         </div>
       ) : null}
-      {state.allProduct?.map((item) => (
+      {allProducts?.map((item) => (
         <div className="home-card" key={item.id}>
           <img src={item.images[0]} alt="" className="home-card-img" />
           <div className="home-cart-content">
             <p className="home-cart-title">{item.title}</p>
             <p
               className="home-cart-description"
-              onClick={() => handleNavigate(item.id)}
+              onClick={() => handleNavigate(item)}
             >
               {item.description}
             </p>

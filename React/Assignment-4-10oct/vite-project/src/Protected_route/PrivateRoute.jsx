@@ -8,7 +8,7 @@ export default function PrivateRoute() {
    const user = useSelector((state)=>state.user.user)
    const isLogin = useSelector((state)=>state.user.isLogin)
     const dispatch = useDispatch();
-  // console.log("login from private route",isLogin)
+  console.log("login from private route",isLogin)
   if (isLogin==false) {
     return <Navigate to="/" replace />;
   } 

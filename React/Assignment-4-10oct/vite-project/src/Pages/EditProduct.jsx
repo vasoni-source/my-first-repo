@@ -1,17 +1,25 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { UserContext } from "../context/User";
+// import { UserContext } from "../context/User";
+// -------------------------------------------------------------------
+import { singleProduct } from "../features/Product/productSlice";
+import { useSelector, useDispatch } from 'react-redux'
+// -------------------------------------------------------------------
 import { useFetch } from "../hooks/useFetch";
 export default function EditProduct() {
   // const location = useLocation();
   // const formData = location.state?.formData || {};
-  const { state, dispatch } = useContext(UserContext);
-  const singleProduct = state?.singleProduct;
-  console.log("single product from edit", singleProduct);
+  // const { state, dispatch } = useContext(UserContext);
+  // const singleProduct = state?.singleProduct;
+  // console.log("single product from edit", singleProduct);
+  // -------------------------------------------------------------
+  const product = useSelector((state)=>state.product.singleProduct);
+  const dispatch = useDispatch();
+  // -------------------------------------------------------------
   const { id } = useParams();
   const navigator = useNavigate();
   // const [formInfo, setFormInfo] = useState(formData);
-  const [formInfo, setFormInfo] = useState(singleProduct);
+  const [formInfo, setFormInfo] = useState(product);
   const handleChange = (e) => {
     setFormInfo({ ...formInfo, [e.target.name]: e.target.value });
     // dispatch({type:"fetchSingleProduct",payload:{[e.target.name]:e.target.value}})
@@ -29,6 +37,9 @@ export default function EditProduct() {
       console.log("++++++", res);
       // setData(res);
       // dispatchEvent({type:"fetchAllProduct",payload:res})
+      // ------------------------------------------
+      dispatch(singleProduct(res))
+      // -----------------------------------------
     };
     fetchData();
   }, [formInfo]);
@@ -44,7 +55,10 @@ export default function EditProduct() {
 
     // navigator(`/products/${id}`, { state: { formInfo } });
     navigator(`/products/${id}`);
-    dispatch({type:"fetchSingleProduct",payload:formInfo})
+    // dispatch({type:"fetchSingleProduct",payload:formInfo})
+    // --------------------------------------------------
+    dispatch(singleProduct(formInfo));
+    // --------------------------------------------------
     console.log("form ingfo from edit product", formInfo);
   };
 
@@ -54,7 +68,7 @@ export default function EditProduct() {
         <input
           type="text"
           name="title"
-          value={formInfo.title}
+          value={formInfo?.title}
           onChange={handleChange}
         />
         <input
