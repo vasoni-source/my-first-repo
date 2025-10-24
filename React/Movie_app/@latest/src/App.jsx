@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./Common_component/Navbar/Navbar";
@@ -9,6 +9,7 @@ import User from "./Pages/User/User";
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignUp/Login/Login";
 function App() {
+  
   return (
     <div>
       <BrowserRouter>

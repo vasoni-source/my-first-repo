@@ -29,6 +29,48 @@
       "name": "nidhi",
       "email": "nidhi@bestpeers.in",
       "password": "0000"
+    },
+    {
+      "id": "a505",
+      "email": "anuja@bestpeers.in",
+      "password": "9875",
+      "name": "anuja"
+    },
+    {
+      "id": "7ffc",
+      "email": "abhishek@bestpeers.in",
+      "password": "9877",
+      "name": "abhishek"
+    },
+    {
+      "id": "5932",
+      "email": "abhishek@bestpeers.in",
+      "password": "9877",
+      "name": "abhishek"
+    },
+    {
+      "id": "7ae0",
+      "email": "ritik@bestpeers.in",
+      "password": "nbmv",
+      "name": "ritik"
+    },
+    {
+      "id": "a558",
+      "email": "rtrtr@h.vom",
+      "password": "35544",
+      "name": "pragya"
+    },
+    {
+      "id": "3cd0",
+      "email": "prgya@best.com",
+      "password": "1234",
+      "name": "pragya"
+    },
+    {
+      "id": "b081",
+      "email": "vs12@gmail.com",
+      "password": "1234",
+      "name": "vaibhavi"
     }
   ]
 }
