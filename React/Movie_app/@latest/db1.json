@@ -1,175 +1,344 @@
 {
-    "results":[
-  {
-    "id": "1",
-    "title": "The Last Horizon",
-    "genre": ["Action", "Sci-Fi"],
-    "year": 2023,
-    "rating": 8.4,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/1a.jpg",
-      "https://image.tmdb.org/t/p/w500/1b.jpg",
-      "https://image.tmdb.org/t/p/w500/1c.jpg"
-    ],
-    "description": "A team of astronauts ventures beyond the known galaxy to save humanity from extinction.",
-    "director": "Christopher Nolan",
-    "cast": ["Matthew McConaughey", "Jessica Chastain", "John David Washington"],
-    "duration": "2h 32m",
-    "language": "English"
-  },
-  {
-    "id": "2",
-    "title": "Shadows of Kyoto",
-    "genre": ["Drama", "Thriller"],
-    "year": 2022,
-    "rating": 7.6,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/2a.jpg",
-      "https://image.tmdb.org/t/p/w500/2b.jpg",
-      "https://image.tmdb.org/t/p/w500/2c.jpg"
-    ],
-    "description": "A detective in Kyoto uncovers a secret society controlling the city's power from the shadows.",
-    "director": "Hiroshi Tanaka",
-    "cast": ["Rinko Kikuchi", "Ken Watanabe"],
-    "duration": "1h 58m",
-    "language": "Japanese"
-  },
-  {
-    "id": "3",
-    "title": "Echoes in the Wind",
-    "genre": ["Romance", "Drama"],
-    "year": 2020,
-    "rating": 7.9,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/3a.jpg",
-      "https://image.tmdb.org/t/p/w500/3b.jpg",
-      "https://image.tmdb.org/t/p/w500/3c.jpg"
-    ],
-    "description": "Two strangers find love in the most unexpected place while traveling through the mountains of Nepal.",
-    "director": "Greta Gerwig",
-    "cast": ["Timothée Chalamet", "Saoirse Ronan"],
-    "duration": "2h 5m",
-    "language": "English"
-  },
-  {
-    "id": "4",
-    "title": "Neon Streets",
-    "genre": ["Action", "Crime"],
-    "year": 2021,
-    "rating": 8.1,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/4a.jpg",
-      "https://image.tmdb.org/t/p/w500/4b.jpg",
-      "https://image.tmdb.org/t/p/w500/4c.jpg"
-    ],
-    "description": "In a futuristic city run by AI, one rogue cop fights to restore human control.",
-    "director": "Denis Villeneuve",
-    "cast": ["Oscar Isaac", "Zendaya", "John Boyega"],
-    "duration": "2h 20m",
-    "language": "English"
-  },
-  {
-    "id": "5",
-    "title": "The Silent Forest",
-    "genre": ["Horror", "Mystery"],
-    "year": 2024,
-    "rating": 6.9,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/5a.jpg",
-      "https://image.tmdb.org/t/p/w500/5b.jpg",
-      "https://image.tmdb.org/t/p/w500/5c.jpg"
-    ],
-    "description": "A group of hikers discovers that the forest they're exploring is home to an ancient evil.",
-    "director": "Ari Aster",
-    "cast": ["Florence Pugh", "Anya Taylor-Joy"],
-    "duration": "1h 52m",
-    "language": "English"
-  },
-  {
-    "id": "6",
-    "title": "Pixel Hearts",
-    "genre": ["Comedy", "Romance"],
-    "year": 2025,
-    "rating": 7.4,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/6a.jpg",
-      "https://image.tmdb.org/t/p/w500/6b.jpg",
-      "https://image.tmdb.org/t/p/w500/6c.jpg"
-    ],
-    "description": "Two game developers fall in love while creating a virtual reality world that mirrors their emotions.",
-    "director": "Taika Waititi",
-    "cast": ["Emma Stone", "Ryan Gosling"],
-    "duration": "1h 45m",
-    "language": "English"
-  },
-  {
-    "id": "7",
-    "title": "Frozen Empire",
-    "genre": ["Fantasy", "Adventure"],
-    "year": 2022,
-    "rating": 8.2,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/7a.jpg",
-      "https://image.tmdb.org/t/p/w500/7b.jpg",
-      "https://image.tmdb.org/t/p/w500/7c.jpg"
-    ],
-    "description": "A princess must unite rival kingdoms to stop an eternal winter from consuming her world.",
-    "director": "Patty Jenkins",
-    "cast": ["Gal Gadot", "Tom Holland"],
-    "duration": "2h 10m",
-    "language": "English"
-  },
-  {
-    "id": "8",
-    "title": "The Quantum Thief",
-    "genre": ["Sci-Fi", "Heist"],
-    "year": 2024,
-    "rating": 8.7,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/8a.jpg",
-      "https://image.tmdb.org/t/p/w500/8b.jpg",
-      "https://image.tmdb.org/t/p/w500/8c.jpg"
-    ],
-    "description": "A master thief plans a heist across parallel universes to steal the ultimate source of energy.",
-    "director": "Ryan Coogler",
-    "cast": ["Michael B. Jordan", "Tessa Thompson"],
-    "duration": "2h 15m",
-    "language": "English"
-  },
-  {
-    "id": "9",
-    "title": "Sunset Boulevard Reimagined",
-    "genre": ["Drama", "Musical"],
-    "year": 2021,
-    "rating": 7.1,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/9a.jpg",
-      "https://image.tmdb.org/t/p/w500/9b.jpg",
-      "https://image.tmdb.org/t/p/w500/9c.jpg"
-    ],
-    "description": "An aging Hollywood actress struggles to stay relevant in a digital age of fame.",
-    "director": "Baz Luhrmann",
-    "cast": ["Cate Blanchett", "Andrew Garfield"],
-    "duration": "2h 7m",
-    "language": "English"
-  },
-  {
-    "id": "10",
-    "title": "Voyagers Beyond",
-    "genre": ["Adventure", "Sci-Fi"],
-    "year": 2025,
-    "rating": 8.5,
-    "poster": [
-      "https://image.tmdb.org/t/p/w500/10a.jpg",
-      "https://image.tmdb.org/t/p/w500/10b.jpg",
-      "https://image.tmdb.org/t/p/w500/10c.jpg"
-    ],
-    "description": "Explorers on a generational ship discover a new planet — but it’s already inhabited.",
-    "director": "James Cameron",
-    "cast": ["Sam Worthington", "Zoe Saldana"],
-    "duration": "2h 40m",
-    "language": "English"
-  }
-]
-
+  "results": [
+    {
+      "id": "1",
+      "title": "The Last Horizon",
+      "genre": ["Action", "Sci-Fi"],
+      "year": 2023,
+      "rating": 8.4,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/nGxUxi3PfXDRm7Vg95VBNgNM8yc.jpg",
+        "https://image.tmdb.org/t/p/w500/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg",
+        "https://image.tmdb.org/t/p/w500/a2tys4sD7xzVaogPntGsT1ypVoT.jpg"
+      ],
+      "description": "A team of astronauts ventures beyond the known galaxy to save humanity from extinction.",
+      "director": "Christopher Nolan",
+      "cast": ["Matthew McConaughey", "Jessica Chastain", "John David Washington"],
+      "duration": "2h 32m",
+      "language": "English"
+    },
+    {
+      "id": "2",
+      "title": "Shadows of Kyoto",
+      "genre": ["Drama", "Thriller"],
+      "year": 2022,
+      "rating": 7.6,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/kdPMUMJzyYAc4roD52qavX0nLIC.jpg",
+        "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg",
+        "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg"
+      ],
+      "description": "A detective in Kyoto uncovers a secret society controlling the city's power from the shadows.",
+      "director": "Hiroshi Tanaka",
+      "cast": ["Rinko Kikuchi", "Ken Watanabe"],
+      "duration": "1h 58m",
+      "language": "Japanese"
+    },
+    {
+      "id": "3",
+      "title": "Echoes in the Wind",
+      "genre": ["Romance", "Drama"],
+      "year": 2020,
+      "rating": 7.9,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/rPSJAElGxOTko1zK6uIlYnTMFxN.jpg",
+        "https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg",
+        "https://image.tmdb.org/t/p/w500/h5Tn9k5TEHGC5F3V7iH1iYAzgFZ.jpg"
+      ],
+      "description": "Two strangers find love in the most unexpected place while traveling through the mountains of Nepal.",
+      "director": "Greta Gerwig",
+      "cast": ["Timothée Chalamet", "Saoirse Ronan"],
+      "duration": "2h 5m",
+      "language": "English"
+    },
+    {
+      "id": "4",
+      "title": "Neon Streets",
+      "genre": ["Action", "Crime"],
+      "year": 2021,
+      "rating": 8.1,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/aZtwH3RqfXBL98b07VLDC1C1wQx.jpg",
+        "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+        "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg"
+      ],
+      "description": "In a futuristic city run by AI, one rogue cop fights to restore human control.",
+      "director": "Denis Villeneuve",
+      "cast": ["Oscar Isaac", "Zendaya", "John Boyega"],
+      "duration": "2h 20m",
+      "language": "English"
+    },
+    {
+      "id": "5",
+      "title": "The Silent Forest",
+      "genre": ["Horror", "Mystery"],
+      "year": 2024,
+      "rating": 6.9,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
+        "https://image.tmdb.org/t/p/w500/5P8SmMzSNYikXpxil6BYzJ16611.jpg",
+        "https://image.tmdb.org/t/p/w500/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg"
+      ],
+      "description": "A group of hikers discovers that the forest they're exploring is home to an ancient evil.",
+      "director": "Ari Aster",
+      "cast": ["Florence Pugh", "Anya Taylor-Joy"],
+      "duration": "1h 52m",
+      "language": "English"
+    },
+    {
+      "id": "6",
+      "title": "Pixel Hearts",
+      "genre": ["Comedy", "Romance"],
+      "year": 2025,
+      "rating": 7.4,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/jvIVl8zdNSOAJb8X5hGv0D9sLhk.jpg",
+        "https://image.tmdb.org/t/p/w500/a2tys4sD7xzVaogPntGsT1ypVoT.jpg",
+        "https://image.tmdb.org/t/p/w500/zBxxNKEz0H66t9XfFh2cPFeKqK1.jpg"
+      ],
+      "description": "Two game developers fall in love while creating a virtual reality world that mirrors their emotions.",
+      "director": "Taika Waititi",
+      "cast": ["Emma Stone", "Ryan Gosling"],
+      "duration": "1h 45m",
+      "language": "English"
+    },
+    {
+      "id": "7",
+      "title": "Frozen Empire",
+      "genre": ["Fantasy", "Adventure"],
+      "year": 2022,
+      "rating": 8.2,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/fExDM0Wq5MGkM93H5cfTCDx4qTw.jpg",
+        "https://image.tmdb.org/t/p/w500/6aHNU4QZcIIt1MZsQBYLEz0YtKO.jpg",
+        "https://image.tmdb.org/t/p/w500/nMhv6jG5dtLdW7rgguYWvpbk0YN.jpg"
+      ],
+      "description": "A princess must unite rival kingdoms to stop an eternal winter from consuming her world.",
+      "director": "Patty Jenkins",
+      "cast": ["Gal Gadot", "Tom Holland"],
+      "duration": "2h 10m",
+      "language": "English"
+    },
+    {
+      "id": "8",
+      "title": "The Quantum Thief",
+      "genre": ["Sci-Fi", "Heist"],
+      "year": 2024,
+      "rating": 8.7,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg",
+        "https://image.tmdb.org/t/p/w500/m4N26A3TDlBTXqvVOmIu3bYzf8c.jpg",
+        "https://image.tmdb.org/t/p/w500/nfHhPcbvFLc8NSt4pGd3mYJxLVw.jpg"
+      ],
+      "description": "A master thief plans a heist across parallel universes to steal the ultimate source of energy.",
+      "director": "Ryan Coogler",
+      "cast": ["Michael B. Jordan", "Tessa Thompson"],
+      "duration": "2h 15m",
+      "language": "English"
+    },
+    {
+      "id": "9",
+      "title": "Sunset Boulevard Reimagined",
+      "genre": ["Drama", "Musical"],
+      "year": 2021,
+      "rating": 7.1,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg",
+        "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
+        "https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg"
+      ],
+      "description": "An aging Hollywood actress struggles to stay relevant in a digital age of fame.",
+      "director": "Baz Luhrmann",
+      "cast": ["Cate Blanchett", "Andrew Garfield"],
+      "duration": "2h 7m",
+      "language": "English"
+    },
+    {
+      "id": "10",
+      "title": "Voyagers Beyond",
+      "genre": ["Adventure", "Sci-Fi"],
+      "year": 2025,
+      "rating": 8.5,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
+        "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg",
+        "https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg"
+      ],
+      "description": "Explorers on a generational ship discover a new planet — but it’s already inhabited.",
+      "director": "James Cameron",
+      "cast": ["Sam Worthington", "Zoe Saldana"],
+      "duration": "2h 40m",
+      "language": "English"
+    },
+    {
+      "id": "11",
+      "title": "Crimson Skies",
+      "genre": ["Action", "Adventure"],
+      "year": 2024,
+      "rating": 8.3,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/keVYd9xwPz5y5rLrJz4JtF0zVtR.jpg",
+        "https://image.tmdb.org/t/p/w500/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg",
+        "https://image.tmdb.org/t/p/w500/zBxxNKEz0H66t9XfFh2cPFeKqK1.jpg"
+      ],
+      "description": "A rogue pilot must lead a rebellion in a sky ruled by air pirates and powerful empires.",
+      "director": "Joseph Kosinski",
+      "cast": ["Tom Cruise", "Rebecca Ferguson"],
+      "duration": "2h 18m",
+      "language": "English"
+    },
+    {
+      "id": "12",
+      "title": "Whispers Beneath",
+      "genre": ["Horror", "Thriller"],
+      "year": 2023,
+      "rating": 7.2,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg",
+        "https://image.tmdb.org/t/p/w500/dzBtMocZuJbjLOXvrl4zGYigDzh.jpg",
+        "https://image.tmdb.org/t/p/w500/aQvJ5WPzZgYVDrxLX4R6cLJCEaQ.jpg"
+      ],
+      "description": "A journalist investigates mysterious whispers that drive people to madness in an abandoned subway system.",
+      "director": "Jennifer Kent",
+      "cast": ["Florence Pugh", "Dev Patel"],
+      "duration": "1h 57m",
+      "language": "English"
+    },
+    {
+      "id": "13",
+      "title": "The Infinite Loop",
+      "genre": ["Sci-Fi", "Thriller"],
+      "year": 2025,
+      "rating": 8.6,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg",
+        "https://image.tmdb.org/t/p/w500/nfHhPcbvFLc8NSt4pGd3mYJxLVw.jpg",
+        "https://image.tmdb.org/t/p/w500/m4N26A3TDlBTXqvVOmIu3bYzf8c.jpg"
+      ],
+      "description": "A programmer discovers he is trapped inside a time simulation where every choice rewinds reality.",
+      "director": "Alex Garland",
+      "cast": ["Domhnall Gleeson", "Alicia Vikander"],
+      "duration": "2h 8m",
+      "language": "English"
+    },
+    {
+      "id": "14",
+      "title": "The Desert Bloom",
+      "genre": ["Drama", "Romance"],
+      "year": 2021,
+      "rating": 7.8,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
+        "https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg",
+        "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg"
+      ],
+      "description": "A photographer and an archaeologist fall in love while uncovering secrets buried under desert sands.",
+      "director": "Chloé Zhao",
+      "cast": ["Oscar Isaac", "Gemma Chan"],
+      "duration": "2h 3m",
+      "language": "English"
+    },
+    {
+      "id": "15",
+      "title": "Cybernetic Dawn",
+      "genre": ["Sci-Fi", "Action"],
+      "year": 2024,
+      "rating": 8.1,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+        "https://image.tmdb.org/t/p/w500/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+        "https://image.tmdb.org/t/p/w500/aZtwH3RqfXBL98b07VLDC1C1wQx.jpg"
+      ],
+      "description": "In a world ruled by machines, a hacker discovers a code that can free humanity from digital slavery.",
+      "director": "Neill Blomkamp",
+      "cast": ["John Boyega", "Zendaya"],
+      "duration": "2h 22m",
+      "language": "English"
+    },
+    {
+      "id": "16",
+      "title": "Moonlit Sonata",
+      "genre": ["Romance", "Music"],
+      "year": 2022,
+      "rating": 7.5,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/3WjbxaqYB4vAbdUfdr5vbglD2JZ.jpg",
+        "https://image.tmdb.org/t/p/w500/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
+        "https://image.tmdb.org/t/p/w500/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg"
+      ],
+      "description": "A blind pianist rediscovers his passion for music after meeting a street dancer in Paris.",
+      "director": "Damien Chazelle",
+      "cast": ["Ansel Elgort", "Ana de Armas"],
+      "duration": "1h 50m",
+      "language": "English"
+    },
+    {
+      "id": "17",
+      "title": "Parallel Lines",
+      "genre": ["Mystery", "Sci-Fi"],
+      "year": 2025,
+      "rating": 8.4,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/nMhv6jG5dtLdW7rgguYWvpbk0YN.jpg",
+        "https://image.tmdb.org/t/p/w500/fExDM0Wq5MGkM93H5cfTCDx4qTw.jpg",
+        "https://image.tmdb.org/t/p/w500/6aHNU4QZcIIt1MZsQBYLEz0YtKO.jpg"
+      ],
+      "description": "A scientist’s experiment to view alternate realities leads her to meet different versions of herself.",
+      "director": "Christopher Nolan",
+      "cast": ["Jessica Chastain", "Cillian Murphy"],
+      "duration": "2h 30m",
+      "language": "English"
+    },
+    {
+      "id": "18",
+      "title": "The Forgotten City",
+      "genre": ["Adventure", "Mystery"],
+      "year": 2023,
+      "rating": 7.9,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/nfHhPcbvFLc8NSt4pGd3mYJxLVw.jpg",
+        "https://image.tmdb.org/t/p/w500/jvIVl8zdNSOAJb8X5hGv0D9sLhk.jpg",
+        "https://image.tmdb.org/t/p/w500/a2tys4sD7xzVaogPntGsT1ypVoT.jpg"
+      ],
+      "description": "A historian uncovers an ancient civilization hidden beneath a modern metropolis.",
+      "director": "Ridley Scott",
+      "cast": ["Rami Malek", "Emily Blunt"],
+      "duration": "2h 19m",
+      "language": "English"
+    },
+    {
+      "id": "19",
+      "title": "Spectral Divide",
+      "genre": ["Thriller", "Sci-Fi"],
+      "year": 2024,
+      "rating": 8.0,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/keVYd9xwPz5y5rLrJz4JtF0zVtR.jpg",
+        "https://image.tmdb.org/t/p/w500/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg",
+        "https://image.tmdb.org/t/p/w500/zBxxNKEz0H66t9XfFh2cPFeKqK1.jpg"
+      ],
+      "description": "An ex-agent discovers a technology that allows communication with the dead — but someone is listening back.",
+      "director": "Denis Villeneuve",
+      "cast": ["Jake Gyllenhaal", "Tilda Swinton"],
+      "duration": "2h 12m",
+      "language": "English"
+    },
+    {
+      "id": "20",
+      "title": "Emerald Seas",
+      "genre": ["Adventure", "Drama"],
+      "year": 2023,
+      "rating": 7.7,
+      "poster": [
+        "https://image.tmdb.org/t/p/w500/6KErczPBROQty7QoIsaa6wJYXZi.jpg",
+        "https://image.tmdb.org/t/p/w500/fVzXp3NwovUlLe7fvoRynCmBPNc.jpg",
+        "https://image.tmdb.org/t/p/w500/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg"
+      ],
+      "description": "A young marine biologist embarks on a journey to save the ocean from a mysterious ecological disaster.",
+      "director": "James Cameron",
+      "cast": ["Zendaya", "Chris Hemsworth"],
+      "duration": "2h 25m",
+      "language": "English"
+    }
+  ]
 }
