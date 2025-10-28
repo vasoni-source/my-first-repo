@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getMovies } from "./movieThunk";
 const initialState = {
   movies: [],
+  singleMovie : null,
   status:null,
   error:null,
 };
@@ -9,7 +10,9 @@ export const movieSlice = createSlice({
   name: "movie",
   initialState,
   reducers: {
-    
+    getSingleMovie : (state,action)=>{
+      state.singleMovie = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -25,5 +28,5 @@ export const movieSlice = createSlice({
       });
   },
 });
-
+export const {getSingleMovie} = movieSlice.actions;
 export default movieSlice.reducer;

@@ -8,6 +8,10 @@ import Contact from "./Pages/Contact/Contact";
 import User from "./Pages/User/User";
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignUp/Login/Login";
+import MovieDetail from "./Pages/MovieDetail/MovieDetail"
+// import PrivateRoute from "./protected_route/PrivateRoute.js";
+import PrivateRoute from "./protected_route/PrivateRoute";
+import ErrorPage from "./Pages/404Page/ErrorPage";
 function App() {
   
   return (
@@ -16,12 +20,15 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route element={<PrivateRoute/>}>
+            <Route path="/movie/:id" element={<MovieDetail />} />
+          </Route>
           <Route path="/about" element={<About/>} />
-          <Route path="/contact" element={<Contact/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/signUp" element={<SignUp/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/user" element={<User/>} />
+          <Route path="/error" element={<ErrorPage/>}/>
         </Routes>
       </BrowserRouter>
     </div>
