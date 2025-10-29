@@ -58,28 +58,29 @@ export default function Home() {
   }, [selectedValue, dispatch]);
   console.log("selected value", selectedValue);
   const [sortBy, setSortBy] = useState("title");
-  // const sortedMovies = useMemo(() => {
-  //   const sortedArray = [...movies].sort((a, b) => {
-  //     if (sortBy == "year" || sortBy == "rating") {
-  //       return b[sortBy] - a[sortBy];
-  //     }
-  //     if (sortBy === "title") {
-  //       return a.title.localeCompare(b.title);
-  //     }
-  //     return 0;
-  //   });
-  //   return sortedArray;
-  // }, [sortBy, movies]);
-  // console.log("sorted Movies", sortedMovies);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const itemsPerPage = 10;
+  const sortedMovies = useMemo(() => {
+    const sortedArray = [...movies.results].sort((a, b) => {
+      if (sortBy == "year" || sortBy == "rating") {
+        return b[sortBy] - a[sortBy];
+      }
+      if (sortBy === "title") {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
+    return sortedArray;
+  }, [sortBy, movies]);
+  console.log("sorted Movies", sortedMovies);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-  // const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
-  // const startIndex = (currentPage - 1) * itemsPerPage;
-  // const currentMovies = sortedMovies.slice(
-  //   startIndex,
-  //   startIndex + itemsPerPage
-  // );
+  const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentMovies = sortedMovies.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+  console.log("current movies",currentMovies)
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -128,7 +129,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
-        {movies.results?.map((movie) => (
+        {currentMovies?.map((movie) => (
           <div
             className="bg-white rounded-lg overflow-hidden shadow-sm cursor-pointer"
             key={movie.id}
@@ -161,7 +162,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-      {/* <div className="flex justify-center gap-4 py-4">
+      <div className="flex justify-center gap-4 py-4">
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
@@ -179,7 +180,7 @@ export default function Home() {
         >
           Next
         </button>
-      </div> */}
+      </div>
     </div>
   );
 }

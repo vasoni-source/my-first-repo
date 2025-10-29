@@ -25,9 +25,9 @@ export const movieSlice = createSlice({
     },
     filteredMovies: (state, action) => {
       if (action.payload === "All") {
-        state.movies = state.allMovies;
+        state.movies.results = state.allMovies.results;
       } else {
-        state.movies = state.allMovies.filter((movie) =>
+        state.movies.results = state.allMovies.results.filter((movie) =>
           movie.genre.includes(action.payload)
         );
       }
