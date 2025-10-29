@@ -17,7 +17,7 @@ export default function Home() {
   const navigator = useNavigate();
   const movies = useSelector((state) => state.movie?.movies);
   const allMovies = useSelector((state) => state.movie?.allMovies);
-  console.log("_____________", movies);
+  console.log("movies from home", movies.results);
 
   useEffect(() => {
     if (!allMovies?.length) {
@@ -26,12 +26,12 @@ export default function Home() {
   }, [dispatch, allMovies]);
   const handleNavigate = (movie) => {
     navigator(`/movie/${movie.id}`);
-    localStorage.setItem("recentlyViewedmovies",JSON.stringify(movie))
+    // localStorage.setItem("recentlyViewedmovies",JSON.stringify(movie))
     dispatch(recentlyViewedMovies(movie));
   };
   const handleFav = (movie) => {
     dispatch(addFavouriteMovies(movie));
-     localStorage.setItem("favouriteMovies",JSON.stringify(movie));
+    //  localStorage.setItem("favouriteMovies",JSON.stringify(movie));
   };
 
   const allOptions = [
@@ -58,28 +58,28 @@ export default function Home() {
   }, [selectedValue, dispatch]);
   console.log("selected value", selectedValue);
   const [sortBy, setSortBy] = useState("title");
-  const sortedMovies = useMemo(() => {
-    const sortedArray = [...movies].sort((a, b) => {
-      if (sortBy == "year" || sortBy == "rating") {
-        return b[sortBy] - a[sortBy];
-      }
-      if (sortBy === "title") {
-        return a.title.localeCompare(b.title);
-      }
-      return 0;
-    });
-    return sortedArray;
-  }, [sortBy, movies]);
-  console.log("sorted Movies", sortedMovies);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  // const sortedMovies = useMemo(() => {
+  //   const sortedArray = [...movies].sort((a, b) => {
+  //     if (sortBy == "year" || sortBy == "rating") {
+  //       return b[sortBy] - a[sortBy];
+  //     }
+  //     if (sortBy === "title") {
+  //       return a.title.localeCompare(b.title);
+  //     }
+  //     return 0;
+  //   });
+  //   return sortedArray;
+  // }, [sortBy, movies]);
+  // console.log("sorted Movies", sortedMovies);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const itemsPerPage = 10;
 
-  const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentMovies = sortedMovies.slice(
-    startIndex,
-    startIndex + itemsPerPage
-  );
+  // const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const currentMovies = sortedMovies.slice(
+  //   startIndex,
+  //   startIndex + itemsPerPage
+  // );
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -128,7 +128,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
-        {currentMovies?.map((movie) => (
+        {movies.results?.map((movie) => (
           <div
             className="bg-white rounded-lg overflow-hidden shadow-sm cursor-pointer"
             key={movie.id}
@@ -136,7 +136,7 @@ export default function Home() {
             <div className="aspect-[2/3]">
               <img
                 className="w-full h-full object-cover"
-                src={movie.poster[0]}
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                 alt={movie.title}
               />
             </div>
@@ -149,7 +149,7 @@ export default function Home() {
                 className="text-gray-600 text-xs line-clamp-2"
                 onClick={() => handleNavigate(movie)}
               >
-                {movie.description}
+                {movie.overview}
               </p>
             </div>
             <button
@@ -161,7 +161,7 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <div className="flex justify-center gap-4 py-4">
+      {/* <div className="flex justify-center gap-4 py-4">
         <button
           onClick={handlePrevPage}
           disabled={currentPage === 1}
@@ -179,7 +179,7 @@ export default function Home() {
         >
           Next
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }
