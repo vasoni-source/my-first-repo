@@ -3,7 +3,10 @@ import "./Home.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getMovies } from "../../features/Movies/movieThunk";
-import { sortMovies } from "../../features/Movies/movieSlice";
+import {
+  sortMovies,
+  recentlyViewedMovies,
+} from "../../features/Movies/movieSlice";
 import {
   addFavouriteMovies,
   filteredMovies,
@@ -17,16 +20,20 @@ export default function Home() {
   console.log("_____________", movies);
 
   useEffect(() => {
-   if (!allMovies?.length) {
+    if (!allMovies?.length) {
       dispatch(getMovies());
     }
-  }, [dispatch]);
+  }, [dispatch, allMovies]);
   const handleNavigate = (movie) => {
     navigator(`/movie/${movie.id}`);
+    localStorage.setItem("recentlyViewedmovies",JSON.stringify(movie))
+    dispatch(recentlyViewedMovies(movie));
   };
   const handleFav = (movie) => {
     dispatch(addFavouriteMovies(movie));
+     localStorage.setItem("favouriteMovies",JSON.stringify(movie));
   };
+
   const allOptions = [
     { id: 1, label: "Action" },
     { id: 2, label: "Sci-Fi" },
@@ -48,37 +55,31 @@ export default function Home() {
   };
   useEffect(() => {
     dispatch(filteredMovies(selectedValue));
-  }, [selectedValue,dispatch]);
+  }, [selectedValue, dispatch]);
   console.log("selected value", selectedValue);
   const [sortBy, setSortBy] = useState("title");
   const sortedMovies = useMemo(() => {
-   const sortedArray = [...movies].sort((a,b)=>{
-     if (sortBy == "year" || sortBy == "rating") {
-      return b[sortBy] - a[sortBy];
-    }
-    if (sortBy === "title") {
-      return a.title.localeCompare(b.title);
-    }
-    return 0;
-   })
-   return sortedArray;
-  },[sortBy]);
-  useEffect(()=>{
-    dispatch(sortMovies(sortedMovies));
-  },[sortedMovies])
-  console.log("sorted Movies",sortedMovies)
-    const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+    const sortedArray = [...movies].sort((a, b) => {
+      if (sortBy == "year" || sortBy == "rating") {
+        return b[sortBy] - a[sortBy];
+      }
+      if (sortBy === "title") {
+        return a.title.localeCompare(b.title);
+      }
+      return 0;
+    });
+    return sortedArray;
+  }, [sortBy, movies]);
+  console.log("sorted Movies", sortedMovies);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-   const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
+  const totalPages = Math.ceil(sortedMovies.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentMovies = sortedMovies.slice(
     startIndex,
     startIndex + itemsPerPage
   );
-  // useEffect(()=>{
-  //   dispatch(sortMovies(currentMovies))
-  // },[currentMovies])
 
   const handleNextPage = () => {
     if (currentPage < totalPages) setCurrentPage((prev) => prev + 1);
@@ -89,32 +90,45 @@ export default function Home() {
   };
   return (
     <div>
-      <div>
-        <div>
-          <select value={selectedValue} onChange={handleSelectChange}>
-            <option value="All">All</option>
-            {allOptions.map((option) => (
-              <option key={option.id} value={option.label}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="sort-select">Sort by:</label>
-          <select
-            id="sort-select"
-            onChange={(e) => setSortBy(e.target.value)}
-            value={sortBy}
-          >
-            <option value="title">Title (A-Z)</option>
-            <option value="year">Year (Newest)</option>
-            <option value="rating">Rating (Highest)</option>
-          </select>
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white rounded-lg shadow-sm p-4 border border-gray-200">
+          <div className="w-full sm:w-auto">
+            <select
+              value={selectedValue}
+              onChange={handleSelectChange}
+              className="w-full sm:w-64 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer hover:border-gray-400 transition-colors"
+            >
+              <option value="All">All Categories</option>
+              {allOptions.map((option) => (
+                <option key={option.id} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <label
+              htmlFor="sort-select"
+              className="text-sm font-medium text-gray-700 whitespace-nowrap"
+            >
+              Sort by:
+            </label>
+            <select
+              id="sort-select"
+              onChange={(e) => setSortBy(e.target.value)}
+              value={sortBy}
+              className="flex-1 sm:w-48 px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 cursor-pointer hover:border-gray-400 transition-colors"
+            >
+              <option value="title">Title (A-Z)</option>
+              <option value="year">Year (Newest)</option>
+              <option value="rating">Rating (Highest)</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 p-4">
-        {movies?.map((movie) => (
+        {currentMovies?.map((movie) => (
           <div
             className="bg-white rounded-lg overflow-hidden shadow-sm cursor-pointer"
             key={movie.id}
@@ -167,20 +181,5 @@ export default function Home() {
         </button>
       </div>
     </div>
-    // <div className="flex flex-wrap justify-around gap-y-4">
-    //   {movies?.map((movie) => (
-    //     <div className="max-w-sm rounded overflow-hidden shadow-lg" key={movie.id}>
-    //       <img
-    //         className="w-full"
-    //         src={movie.poster[0]}
-    //         alt={movie.title}
-    //       />
-    //       <div className="px-6 py-4">
-    //         <div className="font-bold text-xl mb-2">{movie.title}</div>
-    //         <p className="text-gray-700 text-base" onClick={()=>handleNavigate(movie)}>{movie.description}</p>
-    //       </div>
-    //     </div>
-    //   ))}
-    // </div>
   );
 }

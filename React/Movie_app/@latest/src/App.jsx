@@ -9,11 +9,18 @@ import User from "./Pages/User/User";
 import SignUp from "./Components/SignUp/SignUp";
 import Login from "./Components/SignUp/Login/Login";
 import MovieDetail from "./Pages/MovieDetail/MovieDetail"
-// import PrivateRoute from "./protected_route/PrivateRoute.js";
 import PrivateRoute from "./protected_route/PrivateRoute";
 import ErrorPage from "./Pages/404Page/ErrorPage";
+import { useSelector } from "react-redux";
 function App() {
-  
+   const theme = useSelector((state) => state.theme.mode);
+
+  useEffect(() => {
+    // Remove both classes first
+    document.body.classList.remove("light", "dark");
+    // Then add the current theme
+    document.body.classList.add(theme);
+  }, [theme]);
   return (
     <div>
       <BrowserRouter>

@@ -1,15 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getMovies } from "./movieThunk";
-const allMovies = JSON.parse(localStorage.getItem("movies"));
+const allMovies = JSON.parse(localStorage.getItem("movies")) || [];
+// const favMovies = JSON.parse(localStorage.getItem("favouriteMovies")) || [];
+// const recentlyViewedM = JSON.parse(localStorage.getItem("recentlyViewedmovies")) || [];
 const initialState = {
   movies: allMovies,
   allMovies: allMovies,
   singleMovie: null,
   favouriteMovies: [],
+  recentlyViewed : [],
   status: null,
   error: null,
 };
-
+const maxSize=5;
 export const movieSlice = createSlice({
   name: "movie",
   initialState,
@@ -34,7 +37,14 @@ export const movieSlice = createSlice({
     },
     searchedMovie : (state,action)=>{
       state.movies = action.payload;
-    }
+    },
+    recentlyViewedMovies: (state, action) => {
+      const newItem = action.payload;
+      state.recentlyViewed.unshift(newItem);
+      if(state.recentlyViewed.length>maxSize){
+        state.recentlyViewed.pop()
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +65,7 @@ export const {
   addFavouriteMovies,
   filteredMovies,
   sortMovies,
-  searchedMovie
+  searchedMovie,
+  recentlyViewedMovies
 } = movieSlice.actions;
 export default movieSlice.reducer;
