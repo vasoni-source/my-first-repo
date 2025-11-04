@@ -1,14 +1,16 @@
 import { Router } from 'express'
-import { getUser } from '../controller/index.js';
+import { getUser , addUser,updateUser,deleteUser,getUserById,loginUser} from '../controller/index.js';
+import verifyToken from '../middleware/authMiddleware.js';
 const router = Router();
 
-router.get('/', getUser);
+router.get('/',verifyToken, getUser);
 
 // create a user here
-router.post('/', (req, res) => {
-    res.send('Creating a new user.');
-});
-
+router.get('/:id',getUserById)
+router.post('/', addUser);
+router.post('/login',loginUser)
+router.put('/:id',updateUser)
+router.delete('/:id',deleteUser)
 /**
  * Complete CRUD operation for user
  * Complete CRUD operation for user/:id
