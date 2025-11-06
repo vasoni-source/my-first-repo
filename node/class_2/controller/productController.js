@@ -1,0 +1,115 @@
+import mongoose from "mongoose";
+import product from "../model/product.js";
+
+const getAllProducts = async (req, res) => {
+   
+
+  try {
+     const limit = parseInt(req.query.limit) || 5;
+    const page = parseInt(req.query.page)|| 1;
+    const startIndex = (page-1)*limit;
+    const total = await product.countDocuments();
+    const products = await product.find().skip(startIndex).limit(limit);
+    // const products = await product.find({});
+    console.log("products", products);
+    // res.status(200).json(products);
+    res.status(200).json({
+        page,
+        limit,
+        total,
+        pages:Math.ceil(total / limit),
+        data:products
+    })
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const getProductById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const productItem = await product.findById(id);
+    res.status(200).json(productItem);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const addProduct = async (req, res) => {
+  try {
+    const newProduct = await new product({
+      name: req.body.name,
+      category: req.body.category,
+      brand: req.body.brand,
+      price: req.body.price,
+      stock: req.body.stock,
+      rating: req.body.rating,
+      description: req.body.description,
+      images: req.body.images,
+    });
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const updateProduct = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const productItem = await product.findByIdAndUpdate(
+      id,
+      {
+        name: req.body.name,
+        category: req.body.category,
+        brand: req.body.brand,
+        price: req.body.price,
+        stock: req.body.stock,
+        rating: req.body.rating,
+        description: req.body.description,
+        images: req.body.images,
+      },
+      { new: true }
+    );
+    if (!productItem) {
+      res.status(400).send("product not found");
+    }
+    res.status(200).json(productItem);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const updateProductField = async (req, res) => {
+  const id = req.params.id;
+  const updates = req.body;
+  try {
+    const updateProduct = await product.findOneAndUpdate(
+       { _id: id },
+      { $set: updates },
+      { new: true }
+    );
+    if (!updates) {
+      res.status(400).send("product not found");
+    }
+    res.status(200).json(updateProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+const deleteProduct = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const productItem = await product.findByIdAndDelete(id);
+    if (!productItem) {
+      res.status(400).send("product not found");
+    }
+    res.status(204);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+export {
+  getAllProducts,
+  addProduct,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+  updateProductField,
+};

@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import userSchema from "../model/user.js";
 import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken"
+
 const User = mongoose.model("User", userSchema);
 const getUser = async (req, res) => {
   // res.send('Getting all the user')
