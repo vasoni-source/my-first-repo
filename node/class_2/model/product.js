@@ -5,40 +5,47 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-   category: {
+  category: {
     type: String,
     required: true,
   },
-   brand: {
+  brand: {
     type: String,
     required: true,
   },
-   price: {
+  price: {
     type: Number,
     required: true,
   },
-   stock: {
+  stock: {
     type: Number,
     required: true,
   },
-   rating: {
+  rating: {
     type: Number,
     required: true,
-    default:0,
+    default: 0,
   },
-   description: {
+  description: {
     type: String,
     required: true,
   },
-   images: {
+  images: {
     type: [String],
     required: true,
   },
-  createdAt:{
-    type:Date,
-    default: Date.now
-  }
-
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+  // seller:{
+  //   type:String
+  // }
+  seller: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
 });
 
 export default mongoose.model("Product", productSchema);

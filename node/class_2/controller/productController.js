@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import product from "../model/product.js";
-
+import userSchema from "../model/user.js";
+const User = mongoose.model("User", userSchema);
 const getAllProducts = async (req, res) => {
    
 
@@ -35,6 +36,7 @@ const getProductById = async (req, res) => {
 };
 const addProduct = async (req, res) => {
   try {
+    console.log("username form addfn",req.user)
     const newProduct = await new product({
       name: req.body.name,
       category: req.body.category,
@@ -44,8 +46,11 @@ const addProduct = async (req, res) => {
       rating: req.body.rating,
       description: req.body.description,
       images: req.body.images,
+      // seller:req.user.name
+      seller: req.user._id,
     });
     const savedProduct = await newProduct.save();
+    console.log("saved product",savedProduct)
     res.status(201).json(savedProduct);
   } catch (error) {
     res.status(400).json({ message: error.message });

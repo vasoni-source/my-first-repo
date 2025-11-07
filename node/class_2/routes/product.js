@@ -7,13 +7,17 @@ import {
   deleteProduct,
   updateProductField,
 } from "../controller/index.js";
-
+import verifySeller from "../middleware/sellerValidation/verifySeller.js";
+import verifyToken from "../middleware/authMiddleware.js";
+import verifySellerProduct from "../middleware/sellerValidation/verifySellerProduct.js";
+import verifyDeletionAcces from "../middleware/sellerValidation/verifyDeletionAccess.js";
 const router = Router();
 
 router.get("/", getAllProducts);
 router.get("/:id", getProductById);
-router.post("/", addProduct);
-router.put("/:id", updateProduct);
-router.patch("/:id", updateProductField);
-router.delete("/:id", deleteProduct);
+// router.post("/", addProduct);
+router.post("/",verifyToken,verifySeller,addProduct)
+router.put("/:id",verifyToken,verifySellerProduct, updateProduct);
+router.patch("/:id",verifyToken,verifySellerProduct, updateProductField);
+router.delete("/:id",verifyToken,verifyDeletionAcces, deleteProduct);
 export default router;

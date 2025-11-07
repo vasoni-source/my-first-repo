@@ -1,3 +1,4 @@
 import userRoutes from "./user.js";
 import productRoutes from "./product.js"
-export { userRoutes,productRoutes };
+import orderRoutes from "./order.js"
+export { userRoutes,productRoutes ,orderRoutes};
