@@ -5,7 +5,7 @@ import errorValidation from '../middleware/validation/errorValidationMiddleware.
 import userValidationRules from '../middleware/validation/validationMiddleware.js';
 const router = Router();
 
-router.get('/',verifyToken, getUser);
+router.get('/', getUser);
 
 // create a user here
 router.get('/:id',getUserById)
