@@ -30,9 +30,17 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  images: {
-    type: [String],
-    required: true,
+  // images: {
+  //   type: [String],
+  //   required: true,
+  // },
+  imageUrl:{
+    type:String,
+    required:true
+  },
+  cloudinaryId:{
+    type:String,
+    required:true
   },
   createdAt: {
     type: Date,
