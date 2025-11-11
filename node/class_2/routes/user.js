@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getUser,updateUser,deleteUser,getUserById,loginUser,sendOtp,verifyOtpAndCreateUser, loginUserWithOtp} from '../controller/index.js';
+import { getUser,updateUser,deleteUser,getUserById,loginUser,sendOtp,verifyOtpAndCreateUser, loginUserWithOtp, forgotPassword, passwordReset} from '../controller/index.js';
 import verifyToken from '../middleware/authMiddleware.js';
 import errorValidation from '../middleware/validation/errorValidationMiddleware.js';
 import userValidationRules from '../middleware/validation/validationMiddleware.js';
@@ -17,6 +17,8 @@ router.post('/login_with_otp',sendOtp);
 router.post('/login_verification',loginUserWithOtp)
 router.put('/:id',updateUser)
 router.delete('/:id',deleteUser)
+router.post('/reset-password',forgotPassword)
+router.get('/reset-password/:token',passwordReset)
 /**
  * Complete CRUD operation for user
  * Complete CRUD operation for user/:id

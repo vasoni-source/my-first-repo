@@ -19,9 +19,8 @@ const userSchema = new mongoose.Schema({
         default:'user',
         required:true
     },
-    // sellerDetails:{
-    //     storeName:String,
-    //     products:[{type:mongoose.Schema.Types.ObjectId,ref:'Product'}]
-    // }
+    resetToken:{
+        type:String,
+    }
 })
 export default userSchema;
