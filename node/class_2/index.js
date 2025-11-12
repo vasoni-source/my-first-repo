@@ -9,6 +9,7 @@ import {
   productRoutes,
   orderRoutes,
   cartRoutes,
+  adminRoutes,
   // otpRouter,
 } from "./routes/index.js";
 const app = express();
@@ -18,6 +19,7 @@ app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/order", orderRoutes);
 app.use("/cart", cartRoutes);
+app.use("/admin",adminRoutes);
 // create a db connection here
 // and impliment the connect DB funnction
 

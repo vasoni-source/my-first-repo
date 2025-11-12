@@ -18,9 +18,6 @@ const userSchema = new mongoose.Schema({
         enum:['user','seller','admin'],
         default:'user',
         required:true
-    },
-    resetToken:{
-        type:String,
     }
 })
 export default userSchema;

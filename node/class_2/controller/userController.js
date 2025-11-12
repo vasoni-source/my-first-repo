@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 import speakeasy from "speakeasy";
 import nodemailer from "nodemailer";
 import Otp from "../model/otp.js";
+import ResetToken from "../model/resetToken.js";
 import crypto from "crypto";
 const User = mongoose.model("User", userSchema);
 const getUser = async (req, res) => {
@@ -163,17 +164,18 @@ const forgotPassword = async (req, res) => {
   const { email } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    return res.status(401).json({ error: "Authentication failed" });
+    return res.status(401).json({ error: "ANo user found with this email" });
   }
-  const token = await crypto.randomBytes(20).toString("hex");
+  const token = crypto.randomBytes(20).toString("hex");
   user.resetToken = token;
+  await ResetToken.create({ email, reset: token });
   const mailOptions = {
     from: "vaibhavisoni54@gmail.com",
     to: email,
     subject: "Password Reset",
     text: `Click the following link to reset your password: http://localhost:5000/user/reset-password/${token}`,
   };
-  transporter.sendMail(mailOptions, (error, info) => {
+  await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
       res.status(500).send("error sending mail");
@@ -185,19 +187,46 @@ const forgotPassword = async (req, res) => {
     }
   });
 };
-const passwordReset = async (req, res) => {
+const passwordResetToken = async (req, res) => {
   const { token } = req.params;
-  const users = await User.find({});
-  // console.log("all users from paswordreset", users);
-  if (users.some((user) => user.resetToken === token)) {
+  console.log("token from params", token);
+  const resetTokenRecord = await ResetToken.findOne({ reset: token });
+  console.log("resetrecord", resetTokenRecord);
+  if (resetTokenRecord) {
     res.send(
-      `<form method=post action="/reset-password"> <input type="password" name="password" required> <input type="submit" value="Reset Password"></form>`
+      `<form method=post action="/user/reset-password"> <input type="password" name="password" required> <input type="submit" value="Reset Password"></form>`
     );
-  }
-  else{
-    res.status(404).send("Invalid or expired token")
+  } else {
+    res.status(404).send("Invalid or expired token");
   }
 };
+const updatePasswordField = async (req, res) => {
+  const { token, password } = req.body;
+
+  try {
+    const resetTokenRecord = await ResetToken.findOne({ reset: token });
+
+    if (!resetTokenRecord) {
+      return res.status(400).json({ message: "Invalid or expired token" });
+    }
+    const user = await User.findOne({ email: resetTokenRecord.email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    console.log("user from reset", user);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("token record", resetTokenRecord);
+    await User.findOneAndUpdate(
+      { email: user.email },
+      { password: hashedPassword }
+    );
+    await ResetToken.deleteOne({ token });
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -236,5 +265,6 @@ export {
   loginUser,
   loginUserWithOtp,
   forgotPassword,
-  passwordReset
+  passwordResetToken,
+  updatePasswordField,
 };

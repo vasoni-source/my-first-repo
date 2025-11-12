@@ -25,6 +25,8 @@ export const createOrder = async (req, res) => {
       }
 
       totalAmount += product.price * item.quantity;
+      product.stock = product.stock - item.quantity;
+      await product.save();
     }
 
     const newOrder = new Order({
