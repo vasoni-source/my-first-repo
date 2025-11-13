@@ -30,10 +30,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // images: {
-  //   type: [String],
-  //   required: true,
-  // },
+
   imageUrl:{
     type:String,
     required:true
@@ -46,9 +43,7 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  // seller:{
-  //   type:String
-  // }
+  
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

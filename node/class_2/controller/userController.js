@@ -119,9 +119,9 @@ export const verifyOtpAndCreateUser = async (req, res) => {
 // };
 const loginUser = async (req, res) => {
   try {
-    const name = req.body.name;
+    const email = req.body.email;
     const password = req.body.password;
-    const user = await User.findOne({ name });
+    const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: "Authentication failed" });
     }
@@ -130,7 +130,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ error: "Authentication failed" });
     }
     const token = jwt.sign({ userId: user._id }, "vs", { expiresIn: "12h" });
-    res.status(200).json({ token });
+    res.status(200).json({ token,user });
   } catch (error) {
     res.status(500).json({ error: "Login failed" });
   }

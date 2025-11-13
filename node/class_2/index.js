@@ -3,6 +3,7 @@ import dbconnection from "./db.js";
 import dotenv from "dotenv";
 import speakeasy from "speakeasy";
 import nodemailer from "nodemailer";
+import cors from "cors"
 // import userRoutes from './routes/user.js'
 import {
   userRoutes,
@@ -15,6 +16,7 @@ import {
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use(cors());
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/order", orderRoutes);
