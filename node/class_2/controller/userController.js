@@ -62,7 +62,7 @@ export const sendOtp = async (req, res) => {
     res.json({ message: "OTP sent successfully" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Failed to send OTP" });
+    res.status(500).json({ error: "Failed to send you  OTP" });
   }
 };
 export const verifyOtpAndCreateUser = async (req, res) => {
@@ -132,6 +132,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign({ userId: user._id }, "vs", { expiresIn: "12h" });
     res.status(200).json({ token,user });
   } catch (error) {
+    console.log(error)
     res.status(500).json({ error: "Login failed" });
   }
 };

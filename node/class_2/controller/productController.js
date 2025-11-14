@@ -5,6 +5,7 @@ import upload from "../config/multerConfig.js";
 import cloudinary from "../config/cloudinaryConfig.js";
 const User = mongoose.model("User", userSchema);
 const getAllProducts = async (req, res) => {
+  console.log("getttttinggg")
   try {
     const limit = parseInt(req.query.limit) || 5;
     const page = parseInt(req.query.page) || 1;

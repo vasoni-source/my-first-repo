@@ -16,7 +16,9 @@ import {
 const app = express();
 dotenv.config();
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:"*"
+}));
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/order", orderRoutes);
