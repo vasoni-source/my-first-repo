@@ -14,11 +14,12 @@ import {
   // otpRouter,
 } from "./routes/index.js";
 const app = express();
-dotenv.config();
-app.use(express.json());
 app.use(cors({
   origin:"*"
 }));
+dotenv.config();
+app.use(express.json());
+
 app.use("/user", userRoutes);
 app.use("/product", productRoutes);
 app.use("/order", orderRoutes);

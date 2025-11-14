@@ -48,7 +48,10 @@ export const sendOtp = async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required" });
-
+    const user = await User.findOne({email});
+    if(user){
+      return res.status(409).json({message:"User already exist with this email"})
+    }
     const otp = generateOtp();
     await Otp.create({ email, otp });
 
@@ -88,10 +91,11 @@ export const verifyOtpAndCreateUser = async (req, res) => {
     const savedUser = await newUser.save();
 
     await Otp.deleteMany({ email });
-
+    const token = jwt.sign({ userId: savedUser._id }, "vs", { expiresIn: "12h" });
     res.status(201).json({
       message: "User created successfully after OTP verification",
       user: savedUser,
+      token
     });
   } catch (error) {
     console.error(error);

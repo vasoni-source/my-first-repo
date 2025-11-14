@@ -4,6 +4,10 @@ import Product from "../model/product.js";
 export const createOrder = async (req, res) => {
   try {
     const { orderItems, shippingAddress, paymentMethod } = req.body;
+    console.log("orderitems",orderItems);
+    console.log("shippingAddress",shippingAddress);
+    console.log("paymentMethod",paymentMethod);
+
 
     if (!orderItems || orderItems.length === 0) {
       return res.status(400).json({ message: "No order items provided" });
@@ -11,7 +15,7 @@ export const createOrder = async (req, res) => {
 
     let totalAmount = 0;
     for (const item of orderItems) {
-      const product = await Product.findById(item.product);
+      const product = await Product.findById(item.productId._id);
       if (!product) {
         return res
           .status(404)
@@ -23,15 +27,19 @@ export const createOrder = async (req, res) => {
           .status(400)
           .json({ message: `${product.name} is out of stock` });
       }
-
+console.log("product",product)
       totalAmount += product.price * item.quantity;
       product.stock = product.stock - item.quantity;
       await product.save();
     }
-
+    const formattedItems = orderItems.map(item => ({
+      product: item.productId._id,
+      quantity: item.quantity,
+      price: item.price
+    }));
     const newOrder = new Order({
       user: req.user._id,
-      orderItems,
+      orderItems:formattedItems,
       totalAmount,
       shippingAddress,
       paymentMethod,
