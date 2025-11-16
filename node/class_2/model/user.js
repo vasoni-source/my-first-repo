@@ -1,4 +1,10 @@
 import mongoose from "mongoose";
+const shippingAddressSchema = new mongoose.Schema({
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    postalCode: { type: String, required: true },
+    country: { type: String, required: true },
+  });
 const userSchema = new mongoose.Schema({
     name:{
         type:String,
@@ -13,6 +19,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    shippingAddresses: [shippingAddressSchema],
     role : {
         type:String,
         enum:['user','seller','admin'],

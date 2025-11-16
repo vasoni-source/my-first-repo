@@ -249,6 +249,28 @@ const updateUser = async (req, res) => {
     res.status(400).json({ massage: error.message });
   }
 };
+const updateUserField = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const user = await User.findByIdAndUpdate(
+      userId,
+     { $push: { shippingAddresses: req.body }} ,
+      { new: true }
+    );
+    
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json(user);
+
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
 const deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
@@ -272,4 +294,5 @@ export {
   forgotPassword,
   passwordResetToken,
   updatePasswordField,
+  updateUserField,
 };
