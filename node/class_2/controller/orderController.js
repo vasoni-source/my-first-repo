@@ -4,10 +4,9 @@ import Product from "../model/product.js";
 export const createOrder = async (req, res) => {
   try {
     const { orderItems, shippingAddress, paymentMethod } = req.body;
-    console.log("orderitems",orderItems);
-    console.log("shippingAddress",shippingAddress);
-    console.log("paymentMethod",paymentMethod);
-
+    console.log("orderitems", orderItems);
+    console.log("shippingAddress", shippingAddress);
+    console.log("paymentMethod", paymentMethod);
 
     if (!orderItems || orderItems.length === 0) {
       return res.status(400).json({ message: "No order items provided" });
@@ -27,19 +26,19 @@ export const createOrder = async (req, res) => {
           .status(400)
           .json({ message: `${product.name} is out of stock` });
       }
-console.log("product",product)
+      console.log("product", product);
       totalAmount += product.price * item.quantity;
       product.stock = product.stock - item.quantity;
       await product.save();
     }
-    const formattedItems = orderItems.map(item => ({
+    const formattedItems = orderItems.map((item) => ({
       product: item.productId._id,
       quantity: item.quantity,
-      price: item.price
+      price: item.price,
     }));
     const newOrder = new Order({
       user: req.user._id,
-      orderItems:formattedItems,
+      orderItems: formattedItems,
       totalAmount,
       shippingAddress,
       paymentMethod,
@@ -90,9 +89,15 @@ export const deleteOrder = async (req, res) => {
   try {
     const orderId = req.params.orderId;
     const order = await Order.findByIdAndDelete(orderId);
+    const orders = await Order.find({ user: req.user._id });
     if (!order) {
       res.status(400).send("order not found");
     }
+    res.status(200).json({
+      success: true,
+      message: "Order deleted successfully",
+      orders,
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
