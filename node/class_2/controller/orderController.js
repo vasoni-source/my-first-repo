@@ -88,11 +88,24 @@ export const updateOrder = async (req, res) => {
 export const deleteOrder = async (req, res) => {
   try {
     const orderId = req.params.orderId;
-    const order = await Order.findByIdAndDelete(orderId);
-    const orders = await Order.find({ user: req.user._id });
+   
+    const order = await Order.findById(orderId);
     if (!order) {
       res.status(400).send("order not found");
     }
+    for (const item of order.orderItems) {
+      const product = await Product.findById(item.product);
+
+      if (product) {
+        product.stock = product.stock + item.quantity;
+        await product.save();
+      }
+    }
+    await Order.findByIdAndDelete(orderId);
+    const orders = await Order.find({ user: req.user._id });
+     
+    //  const order = await Order.findByIdAndDelete(orderId);
+    
     res.status(200).json({
       success: true,
       message: "Order deleted successfully",

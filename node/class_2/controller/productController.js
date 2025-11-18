@@ -5,7 +5,7 @@ import upload from "../config/multerConfig.js";
 import cloudinary from "../config/cloudinaryConfig.js";
 const User = mongoose.model("User", userSchema);
 const getAllProducts = async (req, res) => {
-  console.log("getttttinggg")
+  console.log("getttttinggg");
   try {
     const limit = parseInt(req.query.limit) || 5;
     const page = parseInt(req.query.page) || 1;
@@ -57,8 +57,8 @@ const addProduct = async (req, res) => {
       rating: req.body.rating,
       description: req.body.description,
       // images: req.body.images,
-      imageUrl:result.secure_url,
-      cloudinaryId:result.public_id,
+      imageUrl: result.secure_url,
+      cloudinaryId: result.public_id,
       // seller:req.user.name
       seller: req.user._id,
     });
@@ -123,6 +123,39 @@ const deleteProduct = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+const searchProduct = async (req, res) => {
+  const searchTerm = req.query.q.toLowerCase();
+  if (!searchTerm) {
+    return res.status(400).send("Search term is required.");
+  }
+  try {
+    const products = await Product.find({ $or: [
+        { name: { $regex: searchTerm, $options: 'i' } }, // Case-insensitive search
+        { description: { $regex: searchTerm, $options: 'i' } }
+      ]});
+  res.status(200).json({data:products})
+  } catch (error) {
+    console.error('Error during search:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+const filterProductsByCategory = async (req, res) => {
+  const category = req.query.category;
+
+  if (!category) {
+    return res.status(400).json({ message: "Category is required" });
+  }
+
+  try {
+    const products = await Product.find({ category });
+    res.status(200).json({data:products});
+  } catch (error) {
+    console.error("Filter error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
 export {
   getAllProducts,
   addProduct,
@@ -130,4 +163,6 @@ export {
   updateProduct,
   deleteProduct,
   updateProductField,
+  searchProduct,
+  filterProductsByCategory,
 };

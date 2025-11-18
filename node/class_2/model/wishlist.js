@@ -8,6 +8,9 @@ const wishlistItemSchema = mongoose.Schema({
     },
     imageUrl:{
         type:String,
+    },
+    stock:{
+        type:Number
     }
    
 })
