@@ -14,7 +14,9 @@ export const createOrder = async (req, res) => {
 
     let totalAmount = 0;
     for (const item of orderItems) {
-      const product = await Product.findById(item.productId._id);
+      // const product = await Product.findById(item.productId._id);
+      const product = await Product.findById(item.productId);
+
       if (!product) {
         return res
           .status(404)
@@ -31,11 +33,17 @@ export const createOrder = async (req, res) => {
       product.stock = product.stock - item.quantity;
       await product.save();
     }
+    // const formattedItems = orderItems.map((item) => ({
+    //   product: item.productId._id,
+    //   quantity: item.quantity,
+    //   price: item.price,
+    // }));
     const formattedItems = orderItems.map((item) => ({
-      product: item.productId._id,
+      product: item.productId, // NOT item.productId._id
       quantity: item.quantity,
       price: item.price,
     }));
+
     const newOrder = new Order({
       user: req.user._id,
       orderItems: formattedItems,
@@ -88,7 +96,7 @@ export const updateOrder = async (req, res) => {
 export const deleteOrder = async (req, res) => {
   try {
     const orderId = req.params.orderId;
-   
+
     const order = await Order.findById(orderId);
     if (!order) {
       res.status(400).send("order not found");
@@ -103,9 +111,9 @@ export const deleteOrder = async (req, res) => {
     }
     await Order.findByIdAndDelete(orderId);
     const orders = await Order.find({ user: req.user._id });
-     
+
     //  const order = await Order.findByIdAndDelete(orderId);
-    
+
     res.status(200).json({
       success: true,
       message: "Order deleted successfully",

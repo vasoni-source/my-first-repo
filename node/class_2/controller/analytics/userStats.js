@@ -40,16 +40,18 @@ const getAllAdminAcounts = async(req,res)=>{
     }
 }
 const revenuePerSeller = async(req,res)=>{
-  const {sellerId} = req.body;
+  // const {sellerId} = req.body;
+  const sellerId = req.user._id;
   try {
     const orders = await Order.find({}).populate({
       path:"orderItems.product",
       select:"seller price name quantity"
     });   
-    // console.log("orders",orders)
+    console.log("orders",orders)
     let revenue=0;
     for (const order of orders) {
       for (const item of order.orderItems) {
+        console.log("orderItems",item)
         if (item.product && item.product.seller === sellerId) {
           revenue += item.price * item.quantity;
         }

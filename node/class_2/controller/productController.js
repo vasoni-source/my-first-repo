@@ -56,10 +56,8 @@ const addProduct = async (req, res) => {
       stock: req.body.stock,
       rating: req.body.rating,
       description: req.body.description,
-      // images: req.body.images,
       imageUrl: result.secure_url,
       cloudinaryId: result.public_id,
-      // seller:req.user.name
       seller: req.user._id,
     });
     const savedProduct = await newProduct.save();
@@ -72,6 +70,15 @@ const addProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   const id = req.params.id;
   try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+    const result = await cloudinary.uploader.upload(
+      `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+      {
+        folder: "product_images",
+      }
+    );
     const productItem = await Product.findByIdAndUpdate(
       id,
       {
@@ -82,7 +89,10 @@ const updateProduct = async (req, res) => {
         stock: req.body.stock,
         rating: req.body.rating,
         description: req.body.description,
-        images: req.body.images,
+        imageUrl: result.secure_url,
+        cloudinaryId: result.public_id,
+        seller: req.user._id,
+        // images: req.body.images,
       },
       { new: true }
     );
@@ -129,14 +139,16 @@ const searchProduct = async (req, res) => {
     return res.status(400).send("Search term is required.");
   }
   try {
-    const products = await Product.find({ $or: [
-        { name: { $regex: searchTerm, $options: 'i' } }, // Case-insensitive search
-        { description: { $regex: searchTerm, $options: 'i' } }
-      ]});
-  res.status(200).json({data:products})
+    const products = await Product.find({
+      $or: [
+        { name: { $regex: searchTerm, $options: "i" } }, // Case-insensitive search
+        { description: { $regex: searchTerm, $options: "i" } },
+      ],
+    });
+    res.status(200).json({ data: products });
   } catch (error) {
-    console.error('Error during search:', error);
-    res.status(500).send('Internal Server Error');
+    console.error("Error during search:", error);
+    res.status(500).send("Internal Server Error");
   }
 };
 const filterProductsByCategory = async (req, res) => {
@@ -148,13 +160,12 @@ const filterProductsByCategory = async (req, res) => {
 
   try {
     const products = await Product.find({ category });
-    res.status(200).json({data:products});
+    res.status(200).json({ data: products });
   } catch (error) {
     console.error("Filter error:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
 
 export {
   getAllProducts,

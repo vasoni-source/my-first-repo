@@ -26,7 +26,7 @@ app.use("/product", productRoutes);
 app.use("/order", orderRoutes);
 app.use("/cart", cartRoutes);
 app.use("/wishlist",wishlistRoutes);
-app.use("/admin",adminRoutes);
+app.use("/analytics",adminRoutes);
 // create a db connection here
 // and impliment the connect DB funnction
 

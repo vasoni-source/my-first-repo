@@ -5,8 +5,9 @@ const verifySellerProduct = async (req, res, next) => {
     const productId = req.params.id;
     const productItem = await  product.findById(productId)
     console.log("product from verifysellerproduct",productItem)
-    if (req.user.name !== productItem.seller) {
-        console.log(req.user.name,req.body)
+    if (req.user._id.toString() !== productItem.seller.toString()) {
+        console.log("userId",req.user._id)
+        console.log("sellerId from product",productItem.seller)
       return res.status(403).json({
         message: "The seller is only allowed to change or delete its own products",
       });

@@ -41,7 +41,8 @@ import Product from "../../model/product.js";
 };
 
 const sellerWiseProduct = async (req, res) => {
-  const { seller } = req.body;
+  // const { seller } = req.body;
+  const seller = req.user._id;
   try {
     const products = await Product.find({ seller });
     res.status(200).json(products);
