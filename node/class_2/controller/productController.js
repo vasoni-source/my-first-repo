@@ -106,9 +106,17 @@ const updateProduct = async (req, res) => {
 };
 const updateProductField = async (req, res) => {
   const id = req.params.id;
-  const updates = req.body;
+  let updates = req.body;
   try {
-    const updateProduct = await Product.findOneAndUpdate(
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+        { folder: "product_images" }
+      );
+      updates.imageUrl = result.secure_url;
+      updates.cloudinaryId = result.public_id;
+    }
+    const updateProduct = await Product.findByIdAndUpdate(
       { _id: id },
       { $set: updates },
       { new: true }
@@ -116,7 +124,8 @@ const updateProductField = async (req, res) => {
     if (!updates) {
       res.status(400).send("product not found");
     }
-    res.status(200).json(updateProduct);
+    const products = await Product.find({});
+    res.status(200).json({updatedProduct:updateProduct,products:products});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -128,7 +137,8 @@ const deleteProduct = async (req, res) => {
     if (!productItem) {
       res.status(400).send("product not found");
     }
-    res.status(204);
+    const products = await Product.find({});
+    res.status(200).json(products);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

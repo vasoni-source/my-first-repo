@@ -25,7 +25,7 @@ router.get("/:id", getProductById);
 // router.post("/", addProduct);
 router.post("/",verifyToken,verifySeller,upload.single('image'),addProduct)
 router.put("/:id",verifyToken,verifySellerProduct,upload.single('image'), updateProduct);
-router.patch("/:id",verifyToken,verifySellerProduct, updateProductField);
+router.patch("/:id",verifyToken,verifySellerProduct,upload.single('image'), updateProductField);
 router.delete("/:id",verifyToken,verifyDeletionAcces, deleteProduct);
 router.get("/", getAllProducts);
 export default router;
