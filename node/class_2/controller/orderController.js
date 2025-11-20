@@ -92,7 +92,26 @@ export const updateOrder = async (req, res) => {
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
-
+export const updateOrderField = async (req, res) => {
+  const id = req.params.orderId;
+  console.log("id of order",id);
+  let updates = req.body;
+  console.log("updates",updates);
+  try {
+    
+    const updateOrder = await Order.findByIdAndUpdate(
+      { _id: id },
+      { $set: updates },
+      { new: true }
+    );
+    if (!updates) {
+      res.status(400).send("order not found");
+    }
+    res.status(200).json({message:"order updated successfully",updateOrder});
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
 export const deleteOrder = async (req, res) => {
   try {
     const orderId = req.params.orderId;

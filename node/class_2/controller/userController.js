@@ -48,9 +48,11 @@ export const sendOtp = async (req, res) => {
   try {
     const { email } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required" });
-    const user = await User.findOne({email});
-    if(user){
-      return res.status(409).json({message:"User already exist with this email"})
+    const user = await User.findOne({ email });
+    if (user) {
+      return res
+        .status(409)
+        .json({ message: "User already exist with this email" });
     }
     const otp = generateOtp();
     await Otp.create({ email, otp });
@@ -91,11 +93,13 @@ export const verifyOtpAndCreateUser = async (req, res) => {
     const savedUser = await newUser.save();
 
     await Otp.deleteMany({ email });
-    const token = jwt.sign({ userId: savedUser._id }, "vs", { expiresIn: "12h" });
+    const token = jwt.sign({ userId: savedUser._id }, "vs", {
+      expiresIn: "12h",
+    });
     res.status(201).json({
       message: "User created successfully after OTP verification",
       user: savedUser,
-      token
+      token,
     });
   } catch (error) {
     console.error(error);
@@ -134,9 +138,9 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ error: "Authentication failed" });
     }
     const token = jwt.sign({ userId: user._id }, "vs", { expiresIn: "12h" });
-    res.status(200).json({ token,user });
+    res.status(200).json({ token, user });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(500).json({ error: "Login failed" });
   }
 };
@@ -252,19 +256,31 @@ const updateUser = async (req, res) => {
 const updateUserField = async (req, res) => {
   try {
     const userId = req.user._id;
+    const updates = { ...req.body }; 
+    // const user = await User.findByIdAndUpdate(
+    //   userId,
+    //   { $push: { shippingAddresses: req.body } },
+    //   { new: true }
+    // );
+ if (updates.shippingAddresses) {
+      await User.findByIdAndUpdate(
+        userId,
+        { $push: { shippingAddresses: updates.shippingAddresses } },
+        { new: true }
+      );
+
+      delete updates.shippingAddresses; // prevent double update
+    }
     const user = await User.findByIdAndUpdate(
       userId,
-     { $push: { shippingAddresses: req.body }} ,
+      updates,
       { new: true }
     );
-    
-
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     res.status(200).json(user);
-
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ message: error.message });

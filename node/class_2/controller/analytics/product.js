@@ -2,9 +2,16 @@ import userSchema from "../../model/user.js";
 import mongoose from "mongoose";
 import Order from "../../model/order.js";
 import Product from "../../model/product.js";
-
-// import Order from "../model/order.js";
-// import Product from "../model/product.js";
+const getAllProductsWithoutPagination = async (req, res) => {
+  try {
+    
+    const products = await Product.find();
+    res.status(200).json(products);
+    
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
  const getBestSellerProducts = async (req, res) => {
   try {
     const orders = await Order.find({}).populate("orderItems.product");
@@ -50,4 +57,4 @@ const sellerWiseProduct = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
-export { sellerWiseProduct,getBestSellerProducts };
+export { sellerWiseProduct,getBestSellerProducts,getAllProductsWithoutPagination };

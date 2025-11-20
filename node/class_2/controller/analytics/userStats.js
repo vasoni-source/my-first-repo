@@ -47,17 +47,34 @@ const revenuePerSeller = async(req,res)=>{
       path:"orderItems.product",
       select:"seller price name quantity"
     });   
-    console.log("orders",orders)
+    // console.log("orders",orders)
     let revenue=0;
+    let orderCount = 0;
     for (const order of orders) {
+      let orderHasSellerProduct = false;
       for (const item of order.orderItems) {
-        console.log("orderItems",item)
-        if (item.product && item.product.seller === sellerId) {
-          revenue += item.price * item.quantity;
+        console.log("orderItems--",item.product
+
+        )
+        // if (item.product && item.product.seller === sellerId) {
+        //   console.log("inside loop")
+        //   revenue += item.price * item.quantity;
+        // }
+         if (!item.product || !item.product.seller) {
+          continue;  // skip this item
         }
+         if (String(item.product.seller) === String(sellerId)) {
+          revenue += item.price * item.quantity;
+           orderHasSellerProduct = true;
+        }
+         if (orderHasSellerProduct) {
+        orderCount++;
+      }
+     
       }
     }
-    res.status(200).json(revenue)
+     const averageOrderValue = orderCount === 0 ? 0 : revenue / orderCount;
+    res.status(200).json({revenue,averageOrderValue})
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

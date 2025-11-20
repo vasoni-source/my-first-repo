@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { getAllAcounts, getAllAdminAcounts, getAllSellersAcount, getAllUsersAcounts, revenuePerSeller } from "../../controller/analytics/userStats.js";
 import { getAllOrdersforAdmin, getOrderesByUserId } from "../../controller/analytics/order.js";
-import { getBestSellerProducts, sellerWiseProduct } from "../../controller/analytics/product.js";
+import { getAllProductsWithoutPagination, getBestSellerProducts, sellerWiseProduct } from "../../controller/analytics/product.js";
 import verifyToken from ".././../middleware/authMiddleware.js"
 // import { getAllAcounts } from "../../controller/analytics/userStats.js";
 const router = Router();
+router.get("/all/products",getAllProductsWithoutPagination)
 router.get('/allAcounts',getAllAcounts);
 router.get('/all_sellers',getAllSellersAcount);
 router.get('/all_users',getAllUsersAcounts);
