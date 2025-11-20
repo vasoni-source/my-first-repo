@@ -5,7 +5,7 @@ import Product from "../../model/product.js";
 const getAllProductsWithoutPagination = async (req, res) => {
   try {
     
-    const products = await Product.find();
+    const products = await Product.find().populate("seller", "name");
     res.status(200).json(products);
     
   } catch (error) {

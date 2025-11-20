@@ -8,7 +8,7 @@ const verifyAdmin = async (req, res, next) => {
 
     if (req.user.role !== "admin") {
       return res.status(403).json({
-        message: "Only admins are allowed to view all orders",
+        message: "Only admins are allowed to view all stats",
       });
     } 
       next();

@@ -177,8 +177,9 @@ export const getOrdersBySellerId = async (req, res) => {
 };
 export const getOrdersByUSerId = async (req, res) => {
   try {
-    const userId = req.user.id;
-    const orders = await Order.find({ user: userId });
+    const userId = req.user._id;
+    console.log("user id ",userId)
+    const orders = await Order.find({ user: userId }).populate("user", "name email createdAt");
     console.log("all orders by user", orders);
     res.status(200).json(orders);
   } catch (error) {
