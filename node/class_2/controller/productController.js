@@ -5,9 +5,8 @@ import upload from "../config/multerConfig.js";
 import cloudinary from "../config/cloudinaryConfig.js";
 const User = mongoose.model("User", userSchema);
 const getAllProducts = async (req, res) => {
-  console.log("getttttinggg");
   try {
-    const limit = parseInt(req.query.limit) || 5;
+    const limit = parseInt(req.query.limit) || 20;
     const page = parseInt(req.query.page) || 1;
     const startIndex = (page - 1) * limit;
     const total = await Product.countDocuments();
@@ -106,11 +105,14 @@ const updateProduct = async (req, res) => {
 };
 const updateProductField = async (req, res) => {
   const id = req.params.id;
+  const seller =id;
   let updates = req.body;
   try {
     if (req.file) {
       const result = await cloudinary.uploader.upload(
-        `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`,
+        `data:${req.file.mimetype};base64,${req.file.buffer.toString(
+          "base64"
+        )}`,
         { folder: "product_images" }
       );
       updates.imageUrl = result.secure_url;
@@ -124,8 +126,7 @@ const updateProductField = async (req, res) => {
     if (!updates) {
       res.status(400).send("product not found");
     }
-    const products = await Product.find({});
-    res.status(200).json({updatedProduct:updateProduct,products:products});
+    res.status(200).json({ updatedProduct: updateProduct});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
@@ -169,8 +170,13 @@ const filterProductsByCategory = async (req, res) => {
   }
 
   try {
-    const products = await Product.find({ category });
-    res.status(200).json({ data: products });
+    if (category === "All") {
+      const products = await Product.find({});
+      res.status(200).json({ data: products }); 
+    } else {
+      const products = await Product.find({ category });
+      res.status(200).json({ data: products });
+    }
   } catch (error) {
     console.error("Filter error:", error);
     res.status(500).json({ message: "Internal Server Error" });

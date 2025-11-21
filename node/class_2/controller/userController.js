@@ -107,24 +107,25 @@ export const verifyOtpAndCreateUser = async (req, res) => {
   }
 };
 
-// const addUser = async (req, res) => {
-//   try {
-//     const password = req.body.password;
-//     const hashedPaasword = await bcrypt.hash(password,10)
-//     const newUser = new User({
-//       name: req.body.name,
-//       email: req.body.email,
-//       // age: req.body.age,
-//       password:hashedPaasword,
-//       role:req.body.role
-//     });
-//     const savedUser = await newUser.save();
-//     res.status(201).json(savedUser);
-//   } catch (error) {
-//     console.log("Error: ", error);
-//     res.status(400).json({ massage: error.message });
-//   }
-// };
+
+
+const addUser = async (req, res) => {
+  try {
+    const password = req.body.password;
+    const hashedPaasword = await bcrypt.hash(password,10)
+    const newUser = new User({
+      name: req.body.name,
+      email: req.body.email,
+      password:hashedPaasword,
+      role:req.body.role
+    });
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ massage: error.message });
+  }
+};
 const loginUser = async (req, res) => {
   try {
     const email = req.body.email;
@@ -311,4 +312,5 @@ export {
   passwordResetToken,
   updatePasswordField,
   updateUserField,
+  addUser,
 };

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getUser,updateUser,deleteUser,getUserById,loginUser,sendOtp,verifyOtpAndCreateUser, loginUserWithOtp, forgotPassword, passwordResetToken, updatePasswordField,updateUserField} from '../controller/index.js';
+import { getUser,updateUser,deleteUser,getUserById,loginUser,sendOtp,verifyOtpAndCreateUser, loginUserWithOtp, forgotPassword, passwordResetToken, updatePasswordField,updateUserField, addUser} from '../controller/index.js';
 import verifyToken from '../middleware/authMiddleware.js';
 import errorValidation from '../middleware/validation/errorValidationMiddleware.js';
 import userValidationRules from '../middleware/validation/validationMiddleware.js';
@@ -13,6 +13,7 @@ router.get('/:id',getUserById)
 // router.post('/',userValidationRules ,errorValidation,addUser);
 router.post("/register/send-otp",sendOtp);
 router.post("/register/verify-otp",userValidationRules,errorValidation, verifyOtpAndCreateUser);
+router.post("/registerByAdmin",userValidationRules,errorValidation,addUser);
 router.post('/login',loginUser);
 router.post('/login_with_otp',sendOtp);
 router.post('/login_verification',loginUserWithOtp)

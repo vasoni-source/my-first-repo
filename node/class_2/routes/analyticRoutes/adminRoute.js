@@ -6,7 +6,7 @@ import verifyToken from ".././../middleware/authMiddleware.js"
 import verifyAdmin from "../../middleware/adminValidation/adminValidation.js";
 // import { getAllAcounts } from "../../controller/analytics/userStats.js";
 const router = Router();
-router.get("/all/products",getAllProductsWithoutPagination)
+router.get("/all/products",getAllProductsWithoutPagination);
 router.get('/allAcounts',getAllAcounts);
 router.get('/all_sellers',getAllSellersAcount);
 router.get('/all_users',getAllUsersAcounts);
