@@ -156,10 +156,10 @@ export default function Home2() {
   ];
 
   return (
-    <div className="max-w-full h-auto ">
-      <div className="max-w-full h-screen bg-fixed bg-[linear-gradient(100deg,rgba(0,132,214,0.8)_0%,rgba(0,0,0,0)_100%),url('https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2019/12/home-new-bg-free-img.jpg')]  bg-cover bg-center">
+    <div className="max-w-full overflow-hidden">
+      <div className="max-w-full flex flex-col h-screen bg-fixed bg-[linear-gradient(100deg,rgba(0,132,214,0.8)_0%,rgba(0,0,0,0)_100%),url('https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2019/12/home-new-bg-free-img.jpg')]  bg-cover bg-center">
         {/* navgation starts here */}
-        <nav className="h-25  flex items-center justify-around bg-black/20 text-white ">
+        <nav className=" h-25  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-black/20 text-white ">
           {/* <div className='text-4xl font-serif font-bold'>DNK</div> */}
           <img
             className="w-20-h-20"
@@ -190,21 +190,21 @@ export default function Home2() {
         </nav>
         {/* navigation end here */}
         {/* Hero section starts here */}
-        <div className="w-xl  h-[80%] text-white  flex flex-col p-8 gap-5 mt-20  ">
-          {/* <div className="text-white border border-black flex flex-col p-6 gap-5 m-10"> */}
-          <h1 className="text-6xl leading-20">
-            Raining Offers For Hot Summer!
-          </h1>
-          <p className="text-2xl">25% Off On All Products</p>
-          <div className="flex items-center justify-between w-[55%]">
-            <button className="py-2 px-5 bg-white text-black uppercase">
-              Shop Now
-            </button>
-            <button className=" border border-white py-2 px-5 uppercase">
-              Find More
-            </button>
+        <div className="w-full overflow-hidden flex-1 flex flex-col justify-center items-center md:items-baseline ">
+          <div className="w-full max-w-xl  text-white  flex flex-col text-center md:text-left md:p-8 gap-5  ">
+            <h1 className="md:text-6xl text-5xl leading-20">
+              Raining Offers For Hot Summer!
+            </h1>
+            <p className="text-4xl ">25% Off On All Products</p>
+            <div className="flex   h-auto flex-col gap-4 md:flex-row  items-center  justify-between   md:w-[55%]">
+              <button className="py-3 px-5 text-xl md:text-lg md:py-2  md:px-3 w-full bg-white text-black uppercase">
+                Shop Now
+              </button>
+              <button className="py-3 px-5 text-xl md:text-lg w-full border border-white md:py-2 md:px-3 uppercase">
+                Find More
+              </button>
+            </div>
           </div>
-          {/* </div> */}
         </div>
         {/* Hero section ends here */}
       </div>
@@ -239,7 +239,7 @@ export default function Home2() {
         </div>
         {/* logo slider ends here */}
         {/* card section starts here */}
-        <div className=" flex flex-wrap justify-around gap-6 ">
+        <div className="w-full flex flex-wrap justify-around gap-6 p-4">
           {cardData.map((item, i) => (
             <div
               style={{
@@ -248,14 +248,14 @@ export default function Home2() {
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
               }}
-              className={`w-sm h-96  flex flex-col justify-end bg-cover bg-center`}
+              className={`md:w-sm w-full h-96  flex flex-col justify-end bg-cover bg-center`}
               key={i}
             >
               {/* <div className="absolute inset-0 bg-black/30"></div> */}
               <div className=" z-10 p-6 m-4 text-white flex flex-col gap-4  ">
                 <h3 className="text-2xl">{item.heading}</h3>
                 <p>{item.para}</p>
-                <button className="uppercase bg-white text-black p-3 w-35">
+                <button className=" w-full uppercase bg-white text-black p-3 md:w-35">
                   Shop Now
                 </button>
               </div>
@@ -272,7 +272,7 @@ export default function Home2() {
           <div className="text-4xl font-semibold">Featured Products</div>
           <div className="border border-b rounded-md mt-5 border-blue-500 w-25"></div>
         </div>
-        <div className="w-full flex flex-wrap justify-evenly gap-4 mt-10">
+        <div className="w-full  flex flex-wrap justify-evenly gap-4 mt-10">
           {products.map((product, i) => (
             <div
               className="w-[18%] min-w-[200px] h-full flex flex-col justify-evenly gap-2"
@@ -314,30 +314,34 @@ export default function Home2() {
         </div>
         {/* Featured products section ends here */}
         {/* Limited time offer section starts here */}
-        <div className="w-full p-4 h-screen container ">
+        <div className="w-full p-4 h-screen  flex flex-col ">
           <div
             style={{
               background:
                 "linear-gradient(100deg, rgba(0, 132, 214, 0.7) 0%, rgba(0, 0, 0, 0) 100%), url('https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2019/12/banner-03.jpg')",
-              backgroundSize: "cover ,100%",
-              backgroundPosition: "fixed",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
               backgroundRepeat: "no-repeat,no-repeat",
               backgroundAttachment: "fixed",
               // backgroundPosition:"60% 100%"
             }}
-            className="w-full h-[80%] flex items-center "
+            className="w-full  h-[80%] flex items-center md:bg-fixed"
           >
-            <div className="w-md ml-20  p-2 h-[65%] flex flex-col justify-between text-white">
-              <div className="text-xl font-bold">Limited Time Offer</div>
-              <div className="text-4xl font-bold">Special Edition</div>
-              <p className="text-md">
+            <div className="w-full max-w-2xl md:ml-20 md:text-left text-center   p-2 min-h-[65%]  flex flex-col justify-between gap-6 text-white">
+              <div className="md:text-xl text-3xl font-bold">
+                Limited Time Offer
+              </div>
+              <div className="md:text-4xl text-5xl md:font-bold">
+                Special Edition
+              </div>
+              <p className="md:text-sm leading-8 text-xl">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
                 tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
               </p>
-              <div className="text-xl font-bold">
+              <div className="md:text-xl md:font-semibold text-3xl">
                 Buy This T-shirt At 20% Discount, Use Code OFF20
               </div>
-              <button className="uppercase w-[25%] p-2 bg-white text-black">
+              <button className="uppercase w-full md:w-[25%]  p-2 bg-white text-black">
                 Shop Now
               </button>
             </div>
@@ -345,66 +349,101 @@ export default function Home2() {
         </div>
         {/* Limited time offer section ends here */}
         {/* assurance card starts here */}
-        <div className=" w-full h-auto  flex flex-col items-center md:justify-around md:flex-row mb-25">
+        {/* <div className=" w-full h-auto  flex flex-col items-center md:justify-around md:flex-row mb-25">
           {infoCards.map((item, i) => (
-            <div className="w-[200px]  h-40 flex flex-col text-center justify-between items-center ">
-              <img className="w-10 h-10" src={item.img} alt="" />
-              <h2 className="font-bold text-lg">{item.title}</h2>
+            <div className="w-[200px] border-4 border-black  h-40 flex flex-col text-center justify-between items-center ">
+              <img className="md:w-10 md:h-10 w-20 h-20" src={item.img} alt="" />
+              <h2 className="font-bold md:text-lg text-2xl">{item.title}</h2>
               <p>{item.description}</p>
+            </div>
+          ))}
+        </div> */}
+        <div className="w-full h-auto flex flex-col md:flex-row items-center justify-center md:justify-around gap-6 md:gap-4 lg:gap-8 py-8 md:py-12 px-4">
+          {infoCards.map((item, i) => (
+            <div
+              key={i}
+              className="w-full max-w-[280px] sm:max-w-[240px] md:max-w-[200px] lg:max-w-[240px] xl:max-w-[280px]  h-auto min-h-[180px] md:min-h-[200px] flex flex-col text-center justify-between items-center p-4 md:p-3 lg:p-4 gap-3 "
+            >
+             
+              <img
+                className="w-16 h-16 md:w-12 md:h-12 lg:w-14 lg:h-14 xl:w-16 xl:h-16 object-contain"
+                src={item.img}
+                alt={item.title}
+              />
+
+            
+              <h2 className="font-bold text-xl md:text-lg lg:text-xl">
+                {item.title}
+              </h2>
+
+              <p className="text-sm md:text-xs lg:text-sm leading-relaxed">
+                {item.description}
+              </p>
             </div>
           ))}
         </div>
         {/* assurance card ends here */}
       </div>
-      <footer className="bg-neutral-primary-soft p-6">
-        <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-          <div className="md:flex md:justify-between">
-
+      <footer className="w-full  bg-neutral-primary-soft p-6">
+        <div className="mx-autow-full  p-4 py-6 lg:py-8">
+          <div className="flex justify-between ">
             <div className=" w-full grid grid-cols-2 gap-8 sm:gap-10 sm:grid-cols-4 text-black">
-              <div>
-                <h2 className="mb-6 text-lg font-semibold text-heading uppercase">
+              <div className=" p-4 flex  justify-center" >
+                <div className="">
+                  <h2 className="mb-6 md:text-lg text-3xl font-normal md:font-semibold text-heading ">
                   Quick Links
                 </h2>
-                <ul className="text-body">
+                <ul className="text-body md:text-lg text-2xl">
                   <li className="mb-4">Home</li>
                   <li className="mb-4">About</li>
                   <li className="mb-4">My Acount</li>
                   <li className="mb-4">Cart</li>
                   <li className="mb-4">Contact</li>
                 </ul>
+                </div>
               </div>
 
-              <div>
-                <h2 className="mb-6 text-lg font-semibold text-heading uppercase">
+              <div className=" p-4 flex  justify-center">
+                <div className="">
+                  <h2 className="mb-6 md:text-lg text-3xl font-normal md:font-semibold  text-heading ">
                   For Her
                 </h2>
-                <ul className="text-body ">
+                <ul className="text-body md:text-lg text-2xl">
                   <li className="mb-4">Women Jeans</li>
                   <li className="mb-4">Tops and Shirts</li>
                   <li className="mb-4">Women Jackets</li>
                   <li className="mb-4">Heels and Flats</li>
                   <li className="mb-4">Women Accessories</li>
                 </ul>
+                </div>
               </div>
 
-              <div>
-                <h2 className="mb-6 text-lg font-semibold text-heading uppercase">
+              <div className=" p-4 flex  justify-center">
+                <div className="">
+                  <h2 className="mb-6 md:text-lg text-3xl font-normal md:font-semibold  text-heading ">
                   For Him
                 </h2>
-                <ul className="text-body ">
+                <ul className="text-body md:text-lg text-2xl">
                   <li className="mb-4">Men Jeans</li>
                   <li className="mb-4">Men Shirts</li>
                   <li className="mb-4">Men Shoes</li>
                   <li className="mb-4">Men Accessories</li>
                   <li className="mb-4">Men Jackets</li>
                 </ul>
+                </div>
               </div>
-              <div>
-                <h2 className="mb-6 text-lg font-semibold text-heading uppercase">
+              <div className=" p-4 flex justify-center">
+                <div className="">
+                  <h2 className="mb-6 md:text-lg text-3xl font-normal md:font-semibold text-heading ">
                   For Him
                 </h2>
                 <div>
-                  <img className="w-30 h-10" src="https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/playstore-free-img.png" alt="" />
+                  <img
+                    className="w-30 h-10"
+                    src="https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/playstore-free-img.png"
+                    alt=""
+                  />
+                </div>
                 </div>
               </div>
             </div>
@@ -412,11 +451,11 @@ export default function Home2() {
 
           <hr className="my-6 border-default sm:mx-auto lg:my-8" />
 
-          <div className="sm:flex  sm:items-center sm:justify-between">
-            <span className="text-sm text-body sm:text-center">
+          <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
+            <span className="md:text-sm text-2xl text-body sm:text-center">
               Copyright © 2025 Brandstore
             </span>
-            <span className="text-sm text-body sm:text-center">
+            <span className="md:text-sm text-2xl text-body sm:text-center">
               Powered by Brandstore
             </span>
           </div>
