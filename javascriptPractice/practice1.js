@@ -90,7 +90,7 @@ function isPalindrome(str){
   let newStr = str.split(" ").join("").toLowerCase();
   console.log(newStr)
   for(let i=0;i<newStr.length;i++){
-    console.log(newStr[i] ,":",newStr[newStr.length-i-1] )
+    // console.log(newStr[i] ,":",newStr[newStr.length-i-1] )
     if(newStr[i]!=newStr[newStr.length-i-1]){
       
       flag = false;
@@ -108,15 +108,33 @@ console.log(isPalindrome("Race Car"));
 
 // Task 5
 function countChars(str){
-  for(let i=0;i<str.length;i++){
-    let count =0;
-    for(let j=0;str.length;j++){
-      if(str[i]===str[j]){
-        count++;
+  // for(let i=0;i<str.length;i++){
+  //   let count =0;
+  //   for(let j=0;str.length;j++){
+  //     if(str[i]===str[j]){
+  //       count++;
         
-      }
-    }
-    console.log(str[i],":",count)
+  //     }
+  //   }
+  //   console.log(str[i],":",count)
+  // }
+   let result = {};
+  for(char of str){
+    result[char] = (result[char] || 0) + 1;
   }
+  return result;
 }
-countChars("javascript");
+console.log(countChars("javascript"));
+// Task 6
+// Reverse each word in a sentence but keep word order.
+
+function reverseWords(str){
+  return str.split(" ").map(word => {
+    let reverse = "";
+    for(let i=word.length-1;i>=0;i--){
+      reverse += word[i];
+    }
+    return reverse;
+  }).join(" ");
+}
+console.log(reverseWords("Hello World"));
