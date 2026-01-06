@@ -3,9 +3,10 @@ import User from "../models/user.model.js";
 import { sendWelcomeEmail } from "../config/mailer.js";
 
 export const registerUser = async (req, res) => {
+  console.log("🔥 Register API hit");
   try {
     const { name, email, password } = req.body;
-
+    console.log("📥 Request body:", req.body);
    
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
@@ -27,9 +28,9 @@ export const registerUser = async (req, res) => {
       password: hashedPassword,
     });
 
-   
+    console.log("📩 Calling sendWelcomeEmail...");
     await sendWelcomeEmail(user.email, user.name);
-
+    console.log("✅ sendWelcomeEmail finished");
     res.status(201).json({
       message: "User registered successfully",
       user: {
