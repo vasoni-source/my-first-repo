@@ -1,6 +1,7 @@
 import React ,{useState,useEffect} from 'react'
 import bgImage from "../assets/images/bg.png"
 import expressLogo from "../assets/images/express.png"
+import pythonLogo from "../assets/images/hd-python-logo-symbol-transparent-png-735811696257415dbkifcuokn-removebg-preview.png"
 import javaLogo from "../assets/images/java-removebg-preview.png"
 import nodeLogo from "../assets/images/node-removebg-preview.png"
 import { ShoppingCart, UserRound, MoveRight, MoveLeft } from "lucide-react";
@@ -9,7 +10,8 @@ export default function
 () {
     const images = [
     "https://icon.icepanel.io/Technology/svg/React.svg",
-    expressLogo,
+    // expressLogo,
+    pythonLogo,
     "https://isocpp.org/assets/images/cpp_logo.png",
     javaLogo,
     nodeLogo,
@@ -134,31 +136,32 @@ export default function
 ];
 
    const infoCards = [
-    {
-      img: "https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/globe-free-img.png",
-      title: "Worldwide Shipping",
-      description:
-        "It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-    },
-    {
-      img: "https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/quality-free-img.png",
-      title: "Best Quality",
-      description:
-        "It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-    },
-    {
-      img: "https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/tag-free-img.png",
-      title: "Best Offers",
-      description:
-        "It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-    },
-    {
-      img: "https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2018/12/lock-free-img.png",
-      title: "Secure Payments",
-      description:
-        "It elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.",
-    },
-  ];
+  {
+    img: "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
+    title: "Learn From Anywhere",
+    description:
+      "Access courses anytime, anywhere on desktop, tablet, or mobile devices.",
+  },
+  {
+    img: "https://cdn-icons-png.flaticon.com/512/1995/1995574.png",
+    title: "Expert Instructors",
+    description:
+      "Learn from industry professionals with real-world experience.",
+  },
+  {
+    img: "https://cdn-icons-png.flaticon.com/512/2921/2921222.png",
+    title: "Affordable Courses",
+    description:
+      "High-quality learning at competitive prices with regular discounts.",
+  },
+  {
+    img: "https://cdn-icons-png.flaticon.com/512/2913/2913465.png",
+    title: "Secure Payments",
+    description:
+      "Safe and encrypted payment methods for a worry-free checkout.",
+  },
+];
+
   return (
    <div>
      <div className="max-w-full flex flex-col h-screen bg-fixed   bg-cover bg-center" style={{ backgroundImage: `url(${bgImage})` }}>
@@ -230,7 +233,7 @@ export default function
                 <h3 className="text-2xl font-semibold">{item.heading}</h3>
                 <p className="text-gray-200">{item.para}</p>
                 <button className="w-full uppercase bg-white text-black p-3 md:w-35 hover:bg-gray-200 transition-colors font-medium">
-                  Shop Now
+                  Enroll Now
                 </button>
               </div>
             </div>
@@ -252,7 +255,7 @@ export default function
               key={i}
             >
               <img className="w-full h-[200px]" src={product.img} alt="" />
-              <div className="text-md font-semibold">{product.name}</div>
+              <div className="text-md font-semibold text-white">{product.name}</div>
               <p className="text-gray-500 text-sm">{product.category}</p>
               <div className="flex ">
                 {product.originalPrice ? (
@@ -261,17 +264,17 @@ export default function
                   </p>
                 ) : null}
                 {product.currentPrice ? (
-                  <p className="text-black font-bold text-sm">
+                  <p className="text-white font-bold text-sm">
                     ${product?.currentPrice.toFixed(2)}
                   </p>
                 ) : null}
                 {product.price ? (
-                  <p className="text-black font-bold text-sm">
+                  <p className="text-white font-bold text-sm">
                     ${product?.price.toFixed(2)}
                   </p>
                 ) : null}
                 {product.priceRange ? (
-                  <p className="text-black font-semibold text-sm">
+                  <p className="text-white font-semibold text-sm">
                     ${product?.priceRange[0].toFixed(2)}-$
                     {product.priceRange[1].toFixed(2)}
                   </p>
@@ -287,7 +290,7 @@ export default function
         </div>
         {/* Featured products section ends here */}
         {/* Limited time offer section starts here */}
-        <div className="w-full p-4 h-[80vh] flex flex-col bg-gray-950">
+        {/* <div className="w-full p-4 h-[80vh] flex flex-col bg-gray-950">
           <div
             style={{
               background:
@@ -319,10 +322,10 @@ export default function
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* Limited time offer section ends here */}
         {/* assurance card starts here */}
-        <div className="w-full h-auto flex flex-col md:flex-row items-center justify-center md:justify-around gap-6 md:gap-4 lg:gap-8 py-8 md:py-12 px-4">
+        <div className="w-full text-white h-auto flex flex-col md:flex-row items-center justify-center md:justify-around gap-6 md:gap-4 lg:gap-8 py-8 md:py-12 px-4">
           {infoCards.map((item, i) => (
             <div
               key={i}
