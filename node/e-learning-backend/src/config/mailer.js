@@ -16,7 +16,7 @@ transporter.verify((err) => {
   if (err) {
     console.error("Brevo SMTP error:", err.message);
   } else {
-    console.log("Brevo SMTP ready 🚀");
+    // console.log("Brevo SMTP ready ");
   }
 });
 
@@ -25,7 +25,7 @@ export const sendWelcomeEmail = async (to, name) => {
   await transporter.sendMail({
     from: `E-Learning App <${process.env.EMAIL_FROM}>`,
     to,
-    subject: "Registration Successful 🎉",
+    subject: "Registration Successful ",
     html: `
       <h2>Hello ${name}</h2>
       <p>You are successfully registered.</p>

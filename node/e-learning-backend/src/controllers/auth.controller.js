@@ -8,7 +8,7 @@ import { sendWelcomeEmail } from "../config/mailer.js";
 export const registerUser = async (req, res) => {
   console.log(" Register API hit");
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password,role } = req.body;
     console.log("Request body:", req.body);
    
     if (!name || !email || !password) {
@@ -29,6 +29,7 @@ export const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      role,
     });
 
     console.log(" Calling sendWelcomeEmail...");
@@ -40,6 +41,7 @@ export const registerUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     });
   } catch (error) {
