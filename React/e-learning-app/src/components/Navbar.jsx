@@ -1,6 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCart, UserRound } from "lucide-react";
+import { useSelector } from "react-redux";
 export default function Navbar() {
+  const isLogin = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
+console.log("islogin",isLogin);
   return (
     <div>
       <nav className=" h-25  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-gray-950 text-white ">
@@ -19,9 +24,23 @@ export default function Navbar() {
         <ul className="md:flex hidden items-center justify-around w-md text-sm uppercase font-light">
           <li className="cursor-pointer hover:text-gray-200">About</li>
           <li className="cursor-pointer hover:text-gray-200">Contact us</li>
-          <li className="cursor-pointer hover:text-gray-200">
+          {/* <li className="cursor-pointer hover:text-gray-200">
             <UserRound />
-          </li>
+          </li> */}
+          {isLogin ? (
+            <li className="cursor-pointer hover:text-gray-200 flex items-center
+              gap-2">
+              
+              
+              <UserRound />
+              <span>{user.name}</span>
+            </li>
+          ) : (
+            <li>
+
+              <Link to="/auth">Login</Link>
+            </li>
+          )}
         </ul>
         <div className="md:hidden">
           <a className="text-4xl" href="#">
