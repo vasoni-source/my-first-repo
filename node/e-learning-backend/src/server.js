@@ -8,9 +8,13 @@ import instructorRoutes from "./routes/instructor.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import courseRoutes from "./routes/course.routes.js";
 import enrollmentRoutes from "./routes/enrollment.routes.js";
+import cors from "cors";
+
+
 dotenv.config();
 connectDB();
 const PORT = process.env.PORT || 5000;
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/student", studentRoutes);
@@ -21,3 +25,4 @@ app.use("/api/enrollments", enrollmentRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
