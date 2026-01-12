@@ -6,9 +6,18 @@ import javaLogo from "../assets/images/java-removebg-preview.png"
 import nodeLogo from "../assets/images/node-removebg-preview.png"
 import { ShoppingCart, UserRound, MoveRight, MoveLeft } from "lucide-react";
 import { FaStar } from "react-icons/fa";
-export default function 
-() {
-    const images = [
+import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux'
+import { fetchCourses } from '../redux/thunk/coursesThunk'
+export default function Home() {
+  const { courses, loading, error } = useSelector((state) => state.course);
+  console.log("courses",courses);
+  console.log("---------------------");
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCourses());
+  }, []);
+  const images = [
     "https://icon.icepanel.io/Technology/svg/React.svg",
     // expressLogo,
     pythonLogo,
@@ -16,23 +25,9 @@ export default function
     javaLogo,
     nodeLogo,
   ];
-  const cardData = [
-  {
-    img: "https://img.freepik.com/free-photo/online-education-concept_23-2148529265.jpg",
-    heading: "Web Development Courses",
-    para: "Learn HTML, CSS, JavaScript, and modern frameworks with hands-on projects.",
-  },
-  {
-    img: "https://img.freepik.com/free-photo/e-learning-online-courses-concept_23-2148533389.jpg",
-    heading: "Data Science & AI",
-    para: "Master data analysis, machine learning, and AI with expert-led courses.",
-  },
-  {
-    img: "https://img.freepik.com/free-photo/online-learning-home_23-2148813625.jpg",
-    heading: "Design & Creative Skills",
-    para: "Improve your UI/UX, graphic design, and creative skills step by step.",
-  },
-];
+  const cardData = courses.filter((course,i)=>!course.freeCourse).slice(0,3);
+  console.log("cardDta",cardData);
+  const featuredCourses = courses.slice(0, 10);
 
    const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -70,71 +65,7 @@ export default function
 
     return visibleImages;
   };
-  const products = [
-  {
-    name: "Complete Web Development Bootcamp",
-    img: "https://miro.medium.com/0*ARCVgw1aDJ0vWXKM.jpeg",
-    category: "Development",
-    originalPrice: 150.0,
-    currentPrice: 120.0,
-  },
-  {
-    name: "Data Science & Machine Learning",
-    img: "https://strapi.blog.talentsprint.com/uploads/data_science_trends_b611e9e920.webp",
-    category: "Data Science",
-    priceRange: [200.0, 240.0],
-  },
-  {
-    name: "JavaScript for Beginners",
-    img: "https://dvg5hr78c8hf1.cloudfront.net/2016/06/17/13/45/01/cc2fac88-2f81-4cc5-9ec9-334042781fd0/1*OsjnQFK1i6CkjXQmTErAtw.jpeg",
-    category: "Development",
-    price: 150.0,
-  },
-  {
-    name: "UI/UX Design Fundamentals",
-    img: "https://www.mindinventory.com/blog/wp-content/uploads/2024/12/top-mobile-app-ui-ux-design-trends.webp",
-    category: "Design",
-    price: 150.0,
-  },
-  {
-    name: "Graphic Design Masterclass",
-    img: "https://img.freepik.com/free-vector/cartoon-graphic-design-landing-page_52683-70881.jpg?semt=ais_hybrid&w=740&q=80",
-    category: "Design",
-    price: 150.0,
-  },
-  {
-    name: "Digital Marketing Essentials",
-    img: "https://midriffinfosolution.org/wp-content/uploads/2022/08/15-min.jpg",
-    category: "Marketing",
-    originalPrice: 150.0,
-    currentPrice: 130.0,
-  },
-  {
-    name: "Python Programming Course",
-    img: "https://img-c.udemycdn.com/course/750x422/6053693_14e0_2.jpg",
-    category: "Development",
-    priceRange: [150.0, 180.0],
-  },
-  {
-    name: "Cloud Computing with AWS",
-    img: "https://media.geeksforgeeks.org/wp-content/uploads/20230419121924/Cloud-Computing.webp",
-    category: "Cloud",
-    priceRange: [150.0, 170.0],
-  },
-  {
-    name: "Business & Entrepreneurship",
-    img: "https://media.licdn.com/dms/image/v2/C5612AQF9rk2-X86anQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1520104051827?e=2147483647&v=beta&t=mom9WegJ1KiI-h6e2_jEpfr0s4CALsz_eMA-zeULV3c",
-    category: "Business",
-    price: 150.0,
-  },
-  {
-    name: "Mobile App Development",
-    img: "https://img.freepik.com/free-vector/app-development-banner_33099-1720.jpg",
-    category: "Development",
-    priceRange: [100.0, 140.0],
-  },
-];
-
+ 
    const infoCards = [
   {
     img: "https://cdn-icons-png.flaticon.com/512/3135/3135755.png",
@@ -221,7 +152,7 @@ export default function
           {cardData.map((item, i) => (
             <div
               style={{
-                background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${item.img})`,
+                background: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${item.imageUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -230,8 +161,8 @@ export default function
               key={i}
             >
               <div className="z-10 p-6 m-4 text-white flex flex-col gap-4">
-                <h3 className="text-2xl font-semibold">{item.heading}</h3>
-                <p className="text-gray-200">{item.para}</p>
+                <h3 className="text-2xl font-semibold">{item.name}</h3>
+                <p className="text-gray-200">{item.description}</p>
                 <button className="w-full uppercase bg-white text-black p-3 md:w-35 hover:bg-gray-200 transition-colors font-medium">
                   Enroll Now
                 </button>
@@ -249,36 +180,26 @@ export default function
           <div className="border border-b rounded-md mt-5 border-blue-500 w-25"></div>
         </div>
         <div className="w-full  flex flex-wrap justify-evenly gap-4 mt-10">
-          {products.map((product, i) => (
+          {featuredCourses.map((course, i) => (
             <div
               className=" w-[18%] min-w-[200px] h-[350px]  flex flex-col justify-evenly gap-2"
               key={i}
             >
-              <img className="w-full h-[200px]" src={product.img} alt="" />
-              <div className="text-md font-semibold text-white">{product.name}</div>
-              <p className="text-gray-500 text-sm">{product.category}</p>
+              <img className="w-full h-[200px]" src={course.imageUrl} alt="" />
+              <div className="text-md font-semibold text-white">{course.name}</div>
+              <p className="text-gray-500 text-sm">{course.level}</p>
               <div className="flex ">
-                {product.originalPrice ? (
-                  <p className="text-gray-500 font-bold line-through text-sm">
-                    ${product?.originalPrice.toFixed(2)}
-                  </p>
-                ) : null}
-                {product.currentPrice ? (
-                  <p className="text-white font-bold text-sm">
-                    ${product?.currentPrice.toFixed(2)}
-                  </p>
-                ) : null}
-                {product.price ? (
-                  <p className="text-white font-bold text-sm">
-                    ${product?.price.toFixed(2)}
-                  </p>
-                ) : null}
-                {product.priceRange ? (
-                  <p className="text-white font-semibold text-sm">
-                    ${product?.priceRange[0].toFixed(2)}-$
-                    {product.priceRange[1].toFixed(2)}
-                  </p>
-                ) : null}
+               
+                {
+                  course.freeCourse ? (
+                    <p className="text-white font-bold text-sm">
+                      Free
+                    </p>
+                  ) : (
+                    <p>{course.price.amount}</p>
+                  )
+                }
+            
               </div>
               <div className="flex text-yellow-500 text-sm">
                 {[...Array(5)].map((_, i) => (
@@ -289,41 +210,7 @@ export default function
           ))}
         </div>
         {/* Featured products section ends here */}
-        {/* Limited time offer section starts here */}
-        {/* <div className="w-full p-4 h-[80vh] flex flex-col bg-gray-950">
-          <div
-            style={{
-              background:
-                "linear-gradient(100deg, rgba(0, 132, 214, 0.7) 0%, rgba(0, 0, 0, 0) 100%), url('https://websitedemos.net/brandstore-02/wp-content/uploads/sites/150/2019/12/banner-03.jpg')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat,no-repeat",
-              backgroundAttachment: "fixed",
-              // backgroundPosition:"60% 100%"
-            }}
-            className="w-full  h-[100%] flex items-center md:bg-fixed"
-          >
-            <div className="w-full max-w-2xl md:ml-20 md:text-left text-center   p-2 min-h-[65%]  flex flex-col justify-between gap-6 text-white">
-              <div className="md:text-xl text-3xl font-bold">
-                Limited Time Offer
-              </div>
-              <div className="md:text-4xl text-5xl md:font-bold">
-                Special Edition
-              </div>
-              <p className="md:text-sm leading-8 text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
-              </p>
-              <div className="md:text-xl md:font-semibold text-3xl">
-                Buy This T-shirt At 20% Discount, Use Code OFF20
-              </div>
-              <button className="uppercase w-full md:w-[25%]  p-2 bg-white text-black">
-                Shop Now
-              </button>
-            </div>
-          </div>
-        </div> */}
-        {/* Limited time offer section ends here */}
+        
         {/* assurance card starts here */}
         <div className="w-full text-white h-auto flex flex-col md:flex-row items-center justify-center md:justify-around gap-6 md:gap-4 lg:gap-8 py-8 md:py-12 px-4">
           {infoCards.map((item, i) => (

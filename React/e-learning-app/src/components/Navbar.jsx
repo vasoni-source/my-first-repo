@@ -16,8 +16,10 @@ console.log("islogin",isLogin);
           alt=""
         />
         <ul className="md:flex items-center justify-around  w-md text-sm uppercase hidden">
-          <li className="cursor-pointer hover:text-gray-200">Home</li>
-          <li className="cursor-pointer hover:text-gray-200">Courses</li>
+          <li className="cursor-pointer hover:text-gray-200">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/courses">Courses</Link></li>
           <li className="cursor-pointer hover:text-gray-200">Categories</li>
           <li className="cursor-pointer hover:text-gray-200">My Learning</li>
         </ul>
