@@ -42,6 +42,18 @@ const courseSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    imageUrl:{
+      type: String,
+      required: true,
+    },
+    rating:{
+      type: Number,
+      default: 0,
+    },
+    studentsEnrolled:{
+      type: Number,
+      default: 0,
+    },
     price: {
       amount: Number,
       currency: String,
