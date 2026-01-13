@@ -138,3 +138,20 @@ console.log(maxNum(numArr));
 
 // --------------------------------------------------------------------------------
 
+// Task 3 => Count how many times each character appears in a string.
+
+const str = "vaibhavi"
+
+function countChar(str){
+  const charCount = str.split("").reduce((acc,curr)=>{
+    if(acc[curr]){
+      acc[curr]++;
+    }
+    else{
+      acc[curr]=1
+    }
+    return acc
+  },{});
+  return charCount;
+}
+console.log(countChar(str));
