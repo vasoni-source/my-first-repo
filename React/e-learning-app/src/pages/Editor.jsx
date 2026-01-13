@@ -28,7 +28,7 @@ export default function CodeEditor() {
         },
         {
           headers: {
-            "X-RapidAPI-Key": "YOUR_API_KEY",
+            "X-RapidAPI-Key": "968e77ed3cmsh07f4ef5624380e1p1fc76ejsn522c24d262d0",
             "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
             "Content-Type": "application/json"
           },
