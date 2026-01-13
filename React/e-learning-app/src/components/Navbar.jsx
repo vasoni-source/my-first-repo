@@ -20,12 +20,12 @@ console.log("islogin",isLogin);
             <Link to="/">Home</Link>
           </li>
           <li className="cursor-pointer hover:text-gray-200"><Link to="/courses">Courses</Link></li>
-          <li className="cursor-pointer hover:text-gray-200">Categories</li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/editor">Editor</Link></li>
           <li className="cursor-pointer hover:text-gray-200">My Learning</li>
         </ul>
         <ul className="md:flex hidden items-center justify-around w-md text-sm uppercase font-light">
-          <li className="cursor-pointer hover:text-gray-200">About</li>
-          <li className="cursor-pointer hover:text-gray-200">Contact us</li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/about">About</Link></li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/contact">Contact us</Link></li>
           {/* <li className="cursor-pointer hover:text-gray-200">
             <UserRound />
           </li> */}
