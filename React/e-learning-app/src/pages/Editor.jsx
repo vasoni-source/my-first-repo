@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Play, Terminal, Code, ChevronDown } from 'lucide-react';
 import axios from 'axios';
 export default function CodeEditor() {
-  const [language, setLanguage] = useState("javascript");
+  const [language, setLanguage] = useState("cpp");
   const [code, setCode] = useState("console.log('Hello World');");
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);

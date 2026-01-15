@@ -3,6 +3,7 @@ import { Mail, Lock, User, Eye, EyeOff, ArrowRight } from 'lucide-react';
 // import { login } from '../redux/slices/authSlice';
 import { login,register } from '../redux/thunk/authThunk';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 export default function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -15,6 +16,7 @@ export default function AuthForm() {
   });
 
   const dispatch = useDispatch();
+  const navigator = useNavigate();
 const validateEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
@@ -59,8 +61,10 @@ const validateForm = () => {
     if (!validateForm()) return;
     if (isLogin) {
       dispatch(login({ email: formData.email, password: formData.password }));
+      navigator("/");
     } else {
       dispatch(register({ name: formData.name, email: formData.email, password: formData.password }));
+      navigator("/");
     }
     alert(`${isLogin ? 'Login' : 'Registration'} submitted!`);
   };

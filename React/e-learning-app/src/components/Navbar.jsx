@@ -8,7 +8,7 @@ export default function Navbar() {
 console.log("islogin",isLogin);
   return (
     <div>
-      <nav className=" h-25  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-gray-950 text-white ">
+      <nav className=" h-24 z-50  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-gray-950 text-white sticky top-0">
         {/* <div className='text-4xl font-serif font-bold'>DNK</div> */}
         <img
           className="w-20-h-20"

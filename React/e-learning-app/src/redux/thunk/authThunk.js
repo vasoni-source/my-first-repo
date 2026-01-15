@@ -13,6 +13,8 @@ export const login = createAsyncThunk("auth/login", async (credentials) => {
     throw new Error("Login failed");
   }
   const data = await response.json();
+  const token = data.token;
+  localStorage.setItem("token", token);
   return data;
 });
 export const register = createAsyncThunk(
