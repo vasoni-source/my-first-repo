@@ -1,8 +1,13 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 export const metadata = {
   title:"Services"
 }
-export default function Services() {
+// export const dynamic = "force-dynamic"
+export default async function Services ({searchParams}) {
+  const search = await searchParams;
+  console.log("search params",search);
+  // const myCookies = await cookies();
   return (
     <div>
       <h1>Services Page</h1>
