@@ -50,7 +50,9 @@ console.log(window)
       }>
         <Likes/>
       </div>
-      {/* <Comments/> */}
+  
+      <Comments/>
+      <Views/>
     </div>
   );
 }
