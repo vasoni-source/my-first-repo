@@ -1,9 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCart, UserRound } from "lucide-react";
+import { useSelector } from "react-redux";
 export default function Navbar() {
+  const isLogin = useSelector((state) => state.auth.isLoggedIn);
+  const user = useSelector((state) => state.auth.user);
+console.log("islogin",isLogin);
   return (
     <div>
-      <nav className=" h-25  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-gray-950 text-white ">
+      <nav className=" h-24 z-50  p-4 flex flex-shrink-0 items-center justify-between md:justify-around bg-gray-950 text-white sticky top-0">
         {/* <div className='text-4xl font-serif font-bold'>DNK</div> */}
         <img
           className="w-20-h-20"
@@ -11,17 +16,33 @@ export default function Navbar() {
           alt=""
         />
         <ul className="md:flex items-center justify-around  w-md text-sm uppercase hidden">
-          <li className="cursor-pointer hover:text-gray-200">Home</li>
-          <li className="cursor-pointer hover:text-gray-200">Courses</li>
-          <li className="cursor-pointer hover:text-gray-200">Categories</li>
+          <li className="cursor-pointer hover:text-gray-200">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/courses">Courses</Link></li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/editor">Editor</Link></li>
           <li className="cursor-pointer hover:text-gray-200">My Learning</li>
         </ul>
         <ul className="md:flex hidden items-center justify-around w-md text-sm uppercase font-light">
-          <li className="cursor-pointer hover:text-gray-200">About</li>
-          <li className="cursor-pointer hover:text-gray-200">Contact us</li>
-          <li className="cursor-pointer hover:text-gray-200">
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/about">About</Link></li>
+          <li className="cursor-pointer hover:text-gray-200"><Link to="/contact">Contact us</Link></li>
+          {/* <li className="cursor-pointer hover:text-gray-200">
             <UserRound />
-          </li>
+          </li> */}
+          {isLogin ? (
+            <li className="cursor-pointer hover:text-gray-200 flex items-center
+              gap-2">
+              
+              
+              <UserRound />
+              <span>{user.name}</span>
+            </li>
+          ) : (
+            <li>
+
+              <Link to="/auth">Login</Link>
+            </li>
+          )}
         </ul>
         <div className="md:hidden">
           <a className="text-4xl" href="#">

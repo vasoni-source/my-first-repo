@@ -16,7 +16,7 @@ transporter.verify((err) => {
   if (err) {
     console.error("Brevo SMTP error:", err.message);
   } else {
-    console.log("Brevo SMTP ready 🚀");
+    // console.log("Brevo SMTP ready ");
   }
 });
 
@@ -25,25 +25,26 @@ export const sendWelcomeEmail = async (to, name) => {
   await transporter.sendMail({
     from: `E-Learning App <${process.env.EMAIL_FROM}>`,
     to,
-    subject: "Registration Successful 🎉",
+    subject: "Registration Successful ",
     html: `
       <h2>Hello ${name}</h2>
       <p>You are successfully registered.</p>
     `,
   });
 };
+export const sendResetPasswordEmail = async (to, resetUrl) => {
+  await transporter.sendMail({
+    from: `E-Learning App <${process.env.EMAIL_FROM}>`,
+    to,
+    subject: "Reset Your Password",
+    html: `
+      <p>You requested a password reset</p>
+      <p>Click below to reset:</p>
+      <a href="${resetUrl}">Reset Password</a>
+      <p>This link expires in 10 minutes.</p>
+    `,
+  });
+};
 
-
-// export const sendWelcomeEmail = async (to, name) => {
-//   await transporter.sendMail({
-//     from: "E-Learning App <no-reply@elearning.com>",
-//     to,
-//     subject: "Registration Successful 🎉",
-//     html: `
-//       <h2>Hello ${name}</h2>
-//       <p>You have been successfully registered.</p>
-//     `,
-//   });
-// };
 
 
